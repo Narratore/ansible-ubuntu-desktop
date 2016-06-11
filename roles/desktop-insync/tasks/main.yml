@@ -1,0 +1,20 @@
+---
+# tasks file for desktop-insync
+
+- name: Configure the Insync APT key
+  apt_key: url=https://d2t3ff60b2tol4.cloudfront.net/services@insynchq.com.gpg.key state=present
+  tags:
+    - desktop_insync
+
+- name: Update apt cache
+  apt: update_cache=yes cache_valid_time=3600
+  tags:
+    - desktop_insync
+
+- name: Instalación de paquetes adicionales
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - insync
+  tags:
+    - desktop_insync
+
