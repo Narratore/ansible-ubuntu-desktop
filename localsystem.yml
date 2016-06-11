@@ -29,12 +29,13 @@
     - package-mgmt
     - shell-settings
     - shell-tools
-#    - desktop-kit
-#    - desktop-google-chrome
-#    - desktop-virtualbox
-#    - desktop-skype
-#    - desktop-teamviewer
-#    - local-storage
+    - desktop-kit
+    - desktop-google-chrome
+    - desktop-virtualbox
+    - desktop-skype
+    - desktop-teamviewer
+    - local-storage
+    - desktop-insync
 #    - rsyslog-service
 #    - openssh-service
 #    - ntp-service
