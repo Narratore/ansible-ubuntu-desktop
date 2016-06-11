@@ -15,6 +15,25 @@ $ git clone https://github.com/jorgearma1982/ansible-my-kubuntu-desktop.git
 $ cd ansible-my-kubuntu-desktop
 ```
 
+## Instalando Ansible
+
+Para instalar ansible en el sistema local ubuntu ejecute el script bin/install-ansible-on-ubuntu.sh
+
+```
+$ sudo bin/install-ansible-on-ubuntu.sh
+```
+
+## Validando la conexion local
+
+Valide que ansible se puede conectar al host local.
+
+```
+$ ansible 127.0.0.1 -c local -m ping
+
+```
+
+Continue la siguiente seccion para ejecutar los playbooks.
+
 ## Ejecutando el playbook
 
 Modifique el playbook localsystem.yml la variable 'user' y cambiela con el nombre de usuario con el que ejecutara el playbook.
