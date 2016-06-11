@@ -1,0 +1,56 @@
+---
+# tasks file for desktop-google-chrome
+
+- name: Does the Google apt file exist?
+  command: test -f {{chrome_apt_file}}
+  register: google_chrome_apt_exists
+  ignore_errors: True
+  tags:
+    - desktop_google_chrome
+
+- name: Add Google Chrome key
+  shell: wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+  when: google_chrome_apt_exists.rc == 1
+  tags:
+    - desktop_google_chrome
+
+- name: Add Google Chrome repo
+  copy: content="deb http://dl.google.com/linux/chrome/deb/ stable main" dest={{chrome_apt_file}} owner=root group=root mode=644
+  when: google_chrome_apt_exists.rc == 1
+  tags:
+    - desktop_google_chrome
+
+- name: Update apt cache
+  apt: update_cache=yes cache_valid_time=3600
+  when: google_chrome_apt_exists.rc == 1
+  tags:
+    - desktop_google_chrome
+
+- name: Install Google Chrome
+  apt: pkg=google-chrome-stable state=installed
+  tags:
+    - desktop_google_chrome
+
+#- name: Does the Google apt file exist?
+#  command: test -f {{talkplugin_apt_file}}
+#  register: google_talkplugin_apt_exists
+#  ignore_errors: True
+#  tags:
+#    - desktop_google_talkplugin
+
+#- name: Add Google Talkplugin repo
+#  copy: content="deb http://dl.google.com/linux/talkplugin/deb/ stable main" dest={{talkplugin_apt_file}} owner=root group=root mode=644
+#  when: google_talkplugin_apt_exists.rc == 1
+#  tags:
+#    - desktop_google_talkplugin
+
+#- name: Update apt cache
+#  apt: update_cache=yes cache_valid_time=3600
+#  when: google_talkplugin_apt_exists.rc == 1
+#  tags:
+#    - desktop_google_talkplugin
+
+#- name: Install Google Chrome Talk Plugin
+#  apt: pkg=google-talkplugin state=installed
+#  tags:
+#    - desktop_google_talkplugin

@@ -1,0 +1,32 @@
+---
+# tasks file for desktop-virtualbox
+
+- name: Configure the Oracle APT key
+  apt_key: url=https://www.virtualbox.org/download/oracle_vbox.asc state=present
+  tags:
+    - desktop_virtualbox
+
+- name: Configure the VirtualBox APT repositories
+  apt_repository: repo="deb http://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib" state=present
+  tags:
+    - desktop_virtualbox
+
+- name: Receive and add key from virtualbox
+  command: apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A2F683C52980AECF
+  tags:
+    - desktop_virtualbox
+
+- name: Update apt cache
+  apt: update_cache=yes cache_valid_time=3600
+  tags:
+    - desktop_virtualbox
+
+- name: Install VirtualBox
+  apt: pkg=virtualbox-{{ virtualbox_version }} state=present
+  tags:
+    - desktop_virtualbox
+
+- name: Add user jmedina to virtualbox group
+  user: name=jmedina groups=vboxusers append=yes
+  tags:
+    - desktop_virtualbox

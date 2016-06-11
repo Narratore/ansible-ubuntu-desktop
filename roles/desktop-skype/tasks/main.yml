@@ -1,0 +1,22 @@
+---
+# tasks file for desktop-skype
+
+- name: Agregar repositorio de partners
+  command: add-apt-repository "deb http://archive.canonical.com/ubuntu {{ ansible_distribution_release }} partner"
+  tags:
+    - desktop_skype
+
+- name: Update apt cache
+  apt: update_cache=yes cache_valid_time=3600
+  tags:
+    - desktop_skype
+
+- name: Agregar arquitectura de 32 bits a dpkg
+  command: dpkg --add-architecture i386
+  tags:
+    - desktop_skype
+
+- name: Install Skype
+  apt: pkg=skype state=present
+  tags:
+    - desktop_skype
