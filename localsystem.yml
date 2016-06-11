@@ -1,0 +1,42 @@
+---
+#
+# Playbook: Local System
+#
+
+- hosts: localhost
+  connection: local
+  user: jmedina
+  become: yes
+  
+#  vars_files:
+#    - group_vars/all.yml
+
+  pre_tasks:
+
+  - name: Pretask | Running pre tasks routine
+    shell: echo 'I":" Beginning to configure the system...'
+
+  - name: Pretask | Update apt cache
+    apt: update_cache=yes cache_valid_time=3600
+    register: apt_update
+
+# - name: Pretask | Run apt-get upgrade
+#   apt: upgrade=dist
+#   register: apt_upgrade
+
+  roles:
+    - common
+    - package-mgmt
+    - shell-settings
+    - shell-tools
+#    - desktop-kit
+#    - desktop-google-chrome
+#    - desktop-virtualbox
+#    - desktop-skype
+#    - desktop-teamviewer
+#    - local-storage
+#    - rsyslog-service
+#    - openssh-service
+#    - ntp-service
+#    - snmpd-service
+#    - system-update
