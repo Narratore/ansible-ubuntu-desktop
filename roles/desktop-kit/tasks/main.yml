@@ -34,6 +34,8 @@
     - ipcalc 
     - nmap
     - wakeonlan
+    - wget
+    - curl
   tags:
     - desktop_kit_shell
 
@@ -78,6 +80,10 @@
     - cvs 
     - subversion
     - git
+    - git-core
+    - git-flow
+    - git-email
+    - git-extras
 #    - kdesvn
     - kdiff3
     - kompare
