@@ -67,7 +67,7 @@ Antes de ejecutar el playbook modifique el archivo del playbook localsystem.yml,
 ```
 - hosts: localhost
   connection: local
-  user: jmedina
+  user: changeme
   become: yes
 ```
 
