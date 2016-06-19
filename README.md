@@ -31,6 +31,8 @@ The main objetive is to automatically execute the tasks in the post-setup proces
    * Instalación de Skype
    * Instalación de Teamviewer
    * Instalación de Insync
+   * Fingerprint/fprint installation.
+   * Vagrant installation.
 
 ## Cloning the repository
 
@@ -125,6 +127,8 @@ $ vim localsystem.yml
     - desktop-teamviewer
     - local-storage
     - desktop-insync
+    - desktop-fingerprint
+    - desktop-vagrant
 #    - rsyslog-service
 #    - openssh-service
 #    - ntp-service
