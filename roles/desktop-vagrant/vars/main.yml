@@ -1,0 +1,4 @@
+---
+# vars file for desktop-vagrant
+
+vagrant_deb_url: "https://releases.hashicorp.com/vagrant/{{ vagrant_version }}/vagrant_{{ vagrant_version }}_{{ ansible_architecture }}.deb"
