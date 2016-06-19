@@ -39,6 +39,7 @@
     - desktop-teamviewer
     - local-storage
     - desktop-insync
+    - desktop-fingerprint
 #    - rsyslog-service
 #    - openssh-service
 #    - ntp-service
