@@ -1,0 +1,6 @@
+---
+# defaults file for desktop-vagrant
+
+vagrant_version: "1.8.4"
+vagrant_tmp_dir: "/tmp/downloads/"
+vagrant_deb_tmp: "{{ vagrant_tmp_dir }}/vagrant_{{ vagrant_version }}.deb"

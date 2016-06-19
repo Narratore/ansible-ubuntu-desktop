@@ -1,0 +1,17 @@
+---
+# tasks file for desktop-vagrant
+
+- name: Ensure downloads temp directory exist
+  file: state=directory path={{ vagrant_tmp_dir }}
+  tags:
+    - desktop_vagrant
+
+- name: Download vagrant for ubuntu from official website
+  get_url: url={{ vagrant_deb_url }} dest={{ vagrant_deb_tmp }}
+  tags:
+    - desktop_vagrant
+
+- name: Install vagrant ubuntu package
+  apt: deb={{ vagrant_deb_tmp }}
+  tags:
+    - desktop_vagrant
