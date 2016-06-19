@@ -1,0 +1,27 @@
+---
+# tasks file for desktop-fingerprint
+
+- name: Add fingerprint fprint Repository
+  apt_repository: repo='ppa:fingerprint/fprint' state=present
+  tags:
+    - desktop_fingerprint
+
+- name: Configure the fingerprint/fprint APT key
+  apt_key: keyserver=keyserver.ubuntu.com id=2F20733F state=present
+  tags:
+    - desktop_fingerprint
+
+- name: Update apt cache
+  apt: update_cache=yes cache_valid_time=3600
+  tags:
+    - desktop_fingerprint
+
+- name: Instalación de paquetes adicionales
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - libfprint0
+    - fprint-demo
+    - libpam-fprintd
+  tags:
+    - desktop_fingerprint
+
