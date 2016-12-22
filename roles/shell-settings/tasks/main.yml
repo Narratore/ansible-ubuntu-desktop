@@ -1,12 +1,6 @@
 ---
 # tasks file for shell-settings
 
-- name: Update apt cache lists
-  apt: update_cache=yes cache_valid_time=3600
-  when: apt_update is not defined
-  tags:
-    - package_mgmt
-
 - name: Install bash packages
   apt: pkg={{item}} state=installed
   with_items:

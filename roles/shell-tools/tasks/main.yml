@@ -1,12 +1,6 @@
 ---
 # tasks file for shell-tools
 
-- name: Update apt cache lists
-  apt: update_cache=yes cache_valid_time=3600
-  when: apt_update is not defined
-  tags:
-    - package_mgmt
-
 - name: Install shell tool packages
   apt: pkg={{item}} state=installed
   with_items:
@@ -33,7 +27,6 @@
     - nmap
     - elinks
   tags:
-    - package_mgmt
     - shell_tools
 
 - name: Set vim dot files

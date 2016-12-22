@@ -17,7 +17,7 @@
     - desktop_virtualbox
 
 - name: Update apt cache
-  apt: update_cache=yes cache_valid_time=3600
+  apt: update_cache=yes
   tags:
     - desktop_virtualbox
 
@@ -27,6 +27,6 @@
     - desktop_virtualbox
 
 - name: Add user jmedina to virtualbox group
-  user: name=jmedina groups=vboxusers append=yes
+  user: name={{ ansible_user_id }} groups=vboxusers append=yes
   tags:
     - desktop_virtualbox

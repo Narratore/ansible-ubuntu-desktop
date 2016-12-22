@@ -1,0 +1,25 @@
+---
+# tasks file for desktop-flux
+
+- name: Add f.lux Ubuntu Repository
+  apt_repository: repo='ppa:nathan-renniewaldock/flux' state=present
+  tags:
+    - desktop_flux
+
+- name: Configure the f.lux APT key
+  apt_key: keyserver=keyserver.ubuntu.com id=29A4B41A state=present
+  tags:
+    - desktop_flux
+
+- name: Update apt cache
+  apt: update_cache=yes
+  tags:
+    - desktop_flux
+
+- name: Instalación de paquetes adicionales
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - fluxgui
+  tags:
+    - desktop_flux
+

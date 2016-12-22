@@ -8,24 +8,17 @@
   user: changeme
   become: yes
   
-#  vars_files:
-#    - group_vars/all.yml
+# Pre-Tasks
 
   pre_tasks:
 
   - name: Pretask | Running pre tasks routine
     shell: echo 'I":" Beginning to configure the system...'
-    tags: pre
 
   - name: Pretask | Update apt cache
-    apt: update_cache=yes cache_valid_time=3600
-    register: apt_update
-    tags: pre
+    apt: update_cache=yes
 
-# - name: Pretask | Run apt-get upgrade
-#   apt: upgrade=dist
-#   register: apt_upgrade
-#   tags: pre
+# Main-Tasks
 
   roles:
     - common
@@ -40,8 +33,9 @@
     - local-storage
     - desktop-insync
     - desktop-fingerprint
+    - desktop-vagrant
+    - desktop-flux
 #    - rsyslog-service
 #    - openssh-service
 #    - ntp-service
-#    - snmpd-service
 #    - system-update

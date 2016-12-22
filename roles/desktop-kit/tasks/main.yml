@@ -21,17 +21,17 @@
     - ntp
     - bind9utils
     - samba
-    - winbind 
-    - smbclient 
-    - cifs-utils 
-    - sshfs 
-    - libpam-mount 
-    - dnsutils 
-    - whois 
-    - traceroute 
-    - wireshark 
-    - tshark 
-    - ipcalc 
+    - winbind
+    - smbclient
+    - cifs-utils
+    - sshfs
+    - libpam-mount
+    - dnsutils
+    - whois
+    - traceroute
+    - wireshark
+    - tshark
+    - ipcalc
     - nmap
     - wakeonlan
     - wget
@@ -63,9 +63,9 @@
     - gnupg
     - gnupg-agent
     - keychain
-    - pinentry-curses
-    - pinentry-qt4
-    - kgpg
+    #- pinentry-curses
+    #- pinentry-qt4
+    #- kgpg
     - ssh-askpass
     - pwgen
     - keepassx
@@ -77,7 +77,7 @@
   with_items:
     - build-essential
     - diffutils
-    - cvs 
+    - cvs
     - subversion
     - git
     - git-core
@@ -85,9 +85,9 @@
     - git-email
     - git-extras
 #    - kdesvn
-    - kdiff3
-    - kompare
-    - mysql-workbench
+#    - kdiff3
+#    - kompare
+#    - mysql-workbench
   tags:
     - desktop_kit_development
 
@@ -129,13 +129,19 @@
     - enigmail
     - pidgin
     - pidgin-encryption
-    - konversation
+#    - konversation
+  tags:
+    - desktop_kit_web_im_mail
+
+- name: Instalación de paquetes para remote management
+  apt: pkg={{ item }} state=installed
+  with_items:
     - xvnc4viewer
     - rdesktop
-    - krdc
+#    - krdc
     - remmina
   tags:
-    - desktop_kit_web_im_mail_remote
+    - desktop_kit_remoteadmin
 
 - name: Instalación de paquetes para Audio y Video
   apt: pkg={{ item }} state=installed
@@ -144,11 +150,11 @@
     - mplayer
     - mencoder
     - vlc
-    - amarok
+#    - amarok
     - clementine
     - easytag
-    - k3b
-    - k3b-i18n
+#    - k3b
+#    - k3b-i18n
   tags:
     - desktop_kit_audiovideo
 
@@ -180,4 +186,3 @@
     - openvpn
   tags:
     - desktop_kit_sshvpn
-

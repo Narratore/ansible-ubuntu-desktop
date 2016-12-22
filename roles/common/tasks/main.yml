@@ -13,20 +13,24 @@
   tags:
     - system_settings
 
-- name: Set timezone variables
-  copy: content='{{timezone}}'
-        dest=/etc/timezone
-        owner=root
-        group=root
-        mode=0644
-        backup=yes
+- name: Remove /etc/localtime
+  file: dest=/etc/localtime state=absent
+  tags:
+    - system_settings_timezone
+
+- name: Set timezone on /etc/localtime
+  file: src=/usr/share/zoneinfo/{{ timezone }} dest=/etc/localtime state=link force=yes
+  tags:
+    - system_settings_timezone
+
+- name: Set timezone on /etc/timezone
+  template: src=timezone dest=/etc/timezone owner=root group=root mode=0644 backup=yes
   notify:
     - update timezone
   tags:
-    - system_settings
+    - system_settings_timezone
 
 - name: Set sysctl local settings
-  copy: src=sysctl/20-custom.conf dest=/etc/sysctl.d/20-custom.conf owner=root group=root mode=0644
+  copy: src=sysctl/20-custom.conf dest=/etc/sysctl.d/20-custom.conf owner=root group=root mode=0644 backup=yes
   tags:
     - system_settings
-
