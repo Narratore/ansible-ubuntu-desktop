@@ -1,5 +1,4 @@
 ---
 # defaults file for desktop-virtualbox
 
-#virtualbox_version: "4.3"
-virtualbox_version: "5.0"
+virtualbox_version: "5.2"

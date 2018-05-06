@@ -1,0 +1,5 @@
+---
+# defaults file for desktop-atom
+
+atom_url_deb: "https://atom.io/download/deb"
+atom_tmp_deb: "/tmp/atom.deb"
