@@ -24,7 +24,9 @@
     - tcpdump
     - tshark
     - traceroute
+    - mtr
     - nmap
+    - zenmap
     - elinks
   tags:
     - shell_tools

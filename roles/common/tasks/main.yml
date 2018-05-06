@@ -6,21 +6,25 @@
   changed_when: False
   tags:
     - system_settings
+    - system_settings_locale
 
 - name: Set default locale to en_US.UTF-8
   command: /usr/sbin/update-locale LANG={{locale}}
   changed_when: False
   tags:
     - system_settings
+    - system_settings_locale
 
 - name: Remove /etc/localtime
   file: dest=/etc/localtime state=absent
   tags:
+    - system_settings
     - system_settings_timezone
 
 - name: Set timezone on /etc/localtime
   file: src=/usr/share/zoneinfo/{{ timezone }} dest=/etc/localtime state=link force=yes
   tags:
+    - system_settings
     - system_settings_timezone
 
 - name: Set timezone on /etc/timezone
@@ -28,9 +32,13 @@
   notify:
     - update timezone
   tags:
+    - system_settings
     - system_settings_timezone
 
 - name: Set sysctl local settings
   copy: src=sysctl/20-custom.conf dest=/etc/sysctl.d/20-custom.conf owner=root group=root mode=0644 backup=yes
+  notify:
+    - Apply sysctl system
   tags:
     - system_settings
+    - system_settings_kernel

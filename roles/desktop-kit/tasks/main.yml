@@ -29,10 +29,12 @@
     - dnsutils
     - whois
     - traceroute
+    - mtr
     - wireshark
     - tshark
     - ipcalc
     - nmap
+    - zenmap
     - wakeonlan
     - wget
     - curl
@@ -49,8 +51,8 @@
     - xmlto
     - libxml2-utils
     - fop
-    - libservlet2.5-java
     - publican
+#    - libservlet2.5-java
   tags:
     - desktop_kit_techdoc
 
@@ -63,12 +65,12 @@
     - gnupg
     - gnupg-agent
     - keychain
-    #- pinentry-curses
-    #- pinentry-qt4
-    #- kgpg
     - ssh-askpass
     - pwgen
     - keepassx
+    #- pinentry-curses
+    #- pinentry-qt4
+    #- kgpg
   tags:
     - desktop_kit_security
 
@@ -95,14 +97,15 @@
   apt: pkg={{ item }} state=installed
   with_items:
     - xpdf
-    - kcalc
     - xchm
     - dia
     - gimp
-    - kolourpaint4
     - ttf-liberation
     - ttf-mscorefonts-installer
     - aspell-es
+    - shutter
+#    - kcalc
+#    - kolourpaint4
   tags:
     - desktop_kit_imageedit
 
@@ -123,12 +126,13 @@
   apt: pkg={{ item }} state=installed
   with_items:
     - firefox
-    - flashplugin-installer
-#    - openjdk-6-jre
     - thunderbird
-    - enigmail
-    - pidgin
-    - pidgin-encryption
+    - openjdk-8-jre
+#    - flashplugin-installer
+#    - openjdk-6-jre
+#    - enigmail
+#    - pidgin
+#    - pidgin-encryption
 #    - konversation
   tags:
     - desktop_kit_web_im_mail
@@ -138,21 +142,21 @@
   with_items:
     - xvnc4viewer
     - rdesktop
-#    - krdc
     - remmina
+#    - krdc
   tags:
     - desktop_kit_remoteadmin
 
 - name: Instalación de paquetes para Audio y Video
   apt: pkg={{ item }} state=installed
   with_items:
-    - lame
-    - mplayer
-    - mencoder
     - vlc
+#    - lame
+#    - mplayer
+#    - mencoder
 #    - amarok
-    - clementine
-    - easytag
+#    - clementine
+#    - easytag
 #    - k3b
 #    - k3b-i18n
   tags:
@@ -165,8 +169,6 @@
     - cherrytree
   tags:
     - desktop_kit_productivity
-  #$ wget http://dl.ganttproject.biz/ganttproject-2.6.6/ganttproject_2.6.6-r1715-1_all.deb
-  #$ sudo dpkg -i ganttproject_2.6.6-r1715-1_all.deb
 
 - name: Instalación de sistema de virtualización KVM con virt-manager
   apt: pkg={{ item }} state=installed
@@ -182,6 +184,7 @@
 - name: Instalación de paquetes adicionales
   apt: pkg={{ item }} state=installed
   with_items:
+    - openssh-client
     - openssh-server
     - openvpn
   tags:

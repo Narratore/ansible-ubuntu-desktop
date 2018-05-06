@@ -105,24 +105,6 @@
   tags:
     - purge_package_mgmt
 
-- name: Setting up apt US official repositories for Ubuntu lucid
-  copy: src=apt/lucid.sources.list.us dest=/etc/apt/sources.list owner=root group=root mode=0644
-  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'lucid'
-  tags:
-    - reposetup_package_mgmt
-
-- name: Setting up apt US official repositories for Ubuntu precise
-  copy: src=apt/precise.sources.list.us dest=/etc/apt/sources.list owner=root group=root mode=0644
-  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'precise'
-  tags:
-    - reposetup_package_mgmt
-
-- name: Setting up apt US official repositories for Ubuntu trusty
-  copy: src=apt/trusty.sources.list.us dest=/etc/apt/sources.list owner=root group=root mode=0644
-  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'trusty'
-  tags:
-    - reposetup_package_mgmt
-
 - name: Setting up apt MX official repositories for Ubuntu xenial
   copy: src=apt/xenial.sources.list.mx dest=/etc/apt/sources.list owner=root group=root mode=0644
   when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial'
@@ -131,7 +113,6 @@
 
 - name: Update apt cache lists
   apt: update_cache=yes cache_valid_time=3600
-  when: apt_update is not defined
   tags:
     - reposetup_package_mgmt
 

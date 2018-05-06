@@ -5,7 +5,7 @@
 
 - hosts: localhost
   connection: local
-  user: changeme
+  user: jmedina
   become: yes
   
 # Pre-Tasks
@@ -25,17 +25,13 @@
     - package-mgmt
     - shell-settings
     - shell-tools
-    - desktop-kit
-    - desktop-google-chrome
-    - desktop-virtualbox
-    - desktop-skype
-    - desktop-teamviewer
     - local-storage
-    - desktop-insync
-    - desktop-fingerprint
+    - desktop-kit
+    - desktop-virtualbox
     - desktop-vagrant
-    - desktop-flux
-#    - rsyslog-service
-#    - openssh-service
-#    - ntp-service
-#    - system-update
+#    - desktop-insync
+#    - desktop-teamviewer
+#    - desktop-skype
+#    - desktop-google-chrome
+#    - desktop-fingerprint
+#    - desktop-flux
