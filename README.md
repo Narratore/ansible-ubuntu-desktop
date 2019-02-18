@@ -47,12 +47,12 @@ personally I run this tasks every time after installing the operating system:
 ## Cloning the repository
 
 First we need to go the directory we are going to work, and clone the repository
-from github, for example:
+from gitlab, for example:
 
 ```
 $ mkdir ~/data/vcs
 $ cd ~/data/vcs
-$ git clone https://github.com/jorgearma1982/ansible-my-kubuntu-desktop.git
+$ git clone https://gitlab.com/jorge.medina/ansible-my-kubuntu-desktop
 $ cd ansible-my-kubuntu-desktop
 ```
 
