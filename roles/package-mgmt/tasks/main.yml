@@ -49,41 +49,6 @@
   tags:
     - clean_package_mgmt
 
-#- name: Purging apt lists
-#  file: path=/var/lib/apt/lists state=absent force=yes
-#  tags:
-#    - purge_package_mgmt
-
-#- name: Make sure apt lists directory exists
-#  file: path=/var/lib/apt/lists state=directory
-#  tags:
-#    - purge_package_mgmt
-
-#- name: Ensuring /var/lib/apt/lists/partial exists
-#  file: path=/var/lib/apt/lists/partial state=directory
-#  tags:
-#    - purge_package_mgmt
-
-#- name: List packages removed but not purged which remains with rc status on dpkg database
-#  shell: dpkg -l | egrep '^rc' | cut -d' ' -f3
-#  register: result_dpklist
-#  changed_when: False
-#  tags:
-#    - purge_package_mgmt
-
-#- name: List packages removed but not purged which remains with rc status on dpkg database
-#  debug: msg="The list of packaes in rc state for {{ inventory_hostname }} are {{ result_dpklist.stdout }}"
-#  changed_when: False
-#  tags:
-#    - purge_package_mgmt
-
-#- name: Purge packages removed but not purged which remains with rc status on dpkg database
-#  shell: dpkg --purge `COLUMNS=300 dpkg -l | egrep '^rc' | cut -d' ' -f3`
-#  ignore_errors: True
-#  changed_when: False
-#  tags:
-#    - purge_package_mgmt
-
 - name: Purge old kernel images packages
   shell: dpkg --list | grep 'linux-image' | awk '{ print $2 }' | sort -V | sed -n '/'"$(uname -r | sed "s/\([0-9.-]*\)-\([^0-9]\+\)/\1/")"'/q;p' |sort -r | tail -n +3 | xargs sudo apt-get -y purge
   ignore_errors: True
@@ -105,9 +70,9 @@
   tags:
     - purge_package_mgmt
 
-- name: Setting up apt MX official repositories for Ubuntu xenial
-  copy: src=apt/xenial.sources.list.mx dest=/etc/apt/sources.list owner=root group=root mode=0644
-  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial'
+- name: Setting up apt MX official repositories for Ubuntu bionic
+  copy: src=apt/bionic.sources.list.mx dest=/etc/apt/sources.list owner=root group=root mode=0644
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'bionic'
   tags:
     - reposetup_package_mgmt
 

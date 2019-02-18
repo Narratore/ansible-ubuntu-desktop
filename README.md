@@ -2,13 +2,23 @@
 
 ## Introduction
 
-I use Linux as the base operating system on my personal computers at home and work, I don't like to do repetitive work, I prefer to automate it, one work that I'd like to automate is the setup process after installing the base operating system on my laptops, I call this, the post-setup process, the requisite to automate something is document it, so I wrote a guide which helps me to do this process manually, with a script, or with a configuration management tool like Ansible.
+I use Linux as the base operating system on my personal computers at home and work,
+I don't like to do repetitive work, I prefer to automate it, one work that I'd like
+to automate is the setup process after installing the base operating system on my
+laptops, I call this, the post-setup process, the requisite to automate something
+is document it, so I wrote a guide which helps me to do this process manually, with
+a script, or with a configuration management tool like Ansible.
 
-This repository contains documentation and ansible playbooks to automatically install all the programs I use at work and home. Most programs I use are open source, they are included in the official repositories of Ubuntu, in this case for Ubuntu 16.04 (xenial), I also requiere other programs wich are not open source, at least they are freely available.
+This repository contains documentation and ansible playbooks to automatically install
+all the programs I use at work and home. Most programs I use are open source, they
+are included in the official repositories of Ubuntu, in this case for Ubuntu 18.04
+(bionic), I also requiere other programs wich are not open source, at least they are
+freely available.
 
 ### Objetives
 
-The main objetive is to automatically execute the tasks in the post-setup process, personally I run this tasks every time after installing the operating system:
+The main objetive is to automatically execute the tasks in the post-setup process,
+personally I run this tasks every time after installing the operating system:
 
  * Customize bash shell enviroment
  * Install official packages by group
@@ -36,17 +46,20 @@ The main objetive is to automatically execute the tasks in the post-setup proces
 
 ## Cloning the repository
 
-First we need to go the directory we are going to work, and clone the repository from github, for example:
+First we need to go the directory we are going to work, and clone the repository
+from github, for example:
 
 ```
-$ cd ~/data/vcs/tuxjm
+$ mkdir ~/data/vcs
+$ cd ~/data/vcs
 $ git clone https://github.com/jorgearma1982/ansible-my-kubuntu-desktop.git
 $ cd ansible-my-kubuntu-desktop
 ```
 
 ## Installing and Testing Ansible
 
-In order to install ansible, you need to run bin/install-ansible-on-ubuntu.sh, for example:
+In order to install ansible, you need to run bin/install-ansible-on-ubuntu.sh,
+for example:
 
 ```
 $ sudo bin/install-ansible-on-ubuntu.sh
@@ -95,10 +108,10 @@ $ cat localsystem.yml
     - package-mgmt
     - shell-settings
     - shell-tools
-    - local-storage
-    - desktop-kit
-    - desktop-virtualbox
-    - desktop-vagrant
+#    - local-storage
+#    - desktop-kit
+#    - desktop-virtualbox
+#    - desktop-vagrant
 #    - desktop-insync
 #    - desktop-teamviewer
 #    - desktop-skype
@@ -109,7 +122,8 @@ $ cat localsystem.yml
 
 ## Running the Ansible playbook
 
-Before you run ansible, plase edit localsystem.yml playbook file, change the variable 'user' with your own username, for example:
+Before you run ansible, plase edit localsystem.yml playbook file, change the
+variable 'user' with your own username, for example:
 
 ```
 $ sed -i 's/changeme/jmedina/' localsystem.yml
@@ -123,13 +137,19 @@ So, it looks like this:
   become: yes
 ```
 
-As you could see in the playbook header, we connect to localhost with the local user jmedina and use sudo to gain privileges, note that 'become' replaces the old 'sudo' parameter.
+As you could see in the playbook header, we connect to localhost with the local
+user jmedina and use sudo to gain privileges, note that 'become' replaces the
+old 'sudo' parameter.
 
 ## Running only a group of tasks using tags
 
-If you remember, in the main playbook localsystem.yml we use roles to group task associated to a program, I have tagged every task in the different playbooks for each role, so if you want to run only  the task asociated to a rol, use the '--tags' with a comma separaed list of tags.
+If you remember, in the main playbook localsystem.yml we use roles to group
+task associated to a program, I have tagged every task in the different playbooks
+for each role, so if you want to run only  the task asociated to a rol, use the
+'--tags' with a comma separaed list of tags.
 
-Each role includes more that one task, some of the are grouped, task on a role can include more than one tag, here are the main tags:
+Each role includes more that one task, some of the are grouped, task on a role
+can include more than one tag, here are the main tags:
 
  * common: system_settings
  * common: system_settings_timezone
@@ -158,7 +178,8 @@ Each role includes more that one task, some of the are grouped, task on a role c
  * desktop-fingerprint: desktop_fingerprint
  * desktop-flux: desktop_flux
 
-IMPORTANT: Be careful when you run tasks from the desktop-kit role, there are some heavy apps you may not need.
+IMPORTANT: Be careful when you run tasks from the desktop-kit role, there are some
+heavy apps you may not need.
 
 Now run ansible with a few simple tasks for system settings:
 

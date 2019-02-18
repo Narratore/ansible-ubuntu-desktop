@@ -41,4 +41,3 @@ echo
 echo "Now validating you can run ansible on the local host."
 
 ansible 127.0.0.1 -c local -m ping
-

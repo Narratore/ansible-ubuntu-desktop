@@ -15,17 +15,21 @@
   tags:
     - shell_settings
 
+- name: Set bash ~/.profile
+  copy: src=bash/root/.profile dest=/root/.profile owner=root group=root mode=0640
+  tags:
+    - shell_settings
 - name: Set bash ~/.bashrc
-  copy: src=bash/root/1404dotbashrc dest=/root/.bashrc owner=root group=root mode=0640
+  copy: src=bash/root/.bashrc dest=/root/.bashrc owner=root group=root mode=0640
   tags:
     - shell_settings
 
 - name: Set bash ~/.bash_local
-  copy: src=bash/root/1404dotbash_local dest=/root/.bash_local owner=root group=root mode=0640
+  copy: src=bash/root/.bash_local dest=/root/.bash_local owner=root group=root mode=0640
   tags:
     - shell_settings
 
 - name: Set bash ~/.bash_aliases
-  copy: src=bash/root/1404dotbash_aliases dest=/root/.bash_aliases owner=root group=root mode=0640
+  copy: src=bash/root/.bash_aliases dest=/root/.bash_aliases owner=root group=root mode=0640
   tags:
     - shell_settings

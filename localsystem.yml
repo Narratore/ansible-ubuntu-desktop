@@ -30,9 +30,11 @@
     - desktop-virtualbox
     - desktop-vagrant
     - desktop-atom
-#    - desktop-insync
-#    - desktop-teamviewer
-#    - desktop-skype
+    - desktop-insync
+    - desktop-teamviewer
+    - desktop-skype
+    - desktop-slack
+    - desktop-zoom
 #    - desktop-google-chrome
 #    - desktop-fingerprint
 #    - desktop-flux

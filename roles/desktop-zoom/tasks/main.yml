@@ -1,0 +1,22 @@
+---
+# tasks file for desktop-zoom
+
+- name: Download zoom package
+  get_url:
+    url: https://zoom.us/client/latest/zoom_amd64.deb
+    dest: /tmp/zoom_amd64.deb
+  tags:
+    - desktop_zoom
+
+- name: Install zoom package dependencies run 1
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ zoom.dependencies }}"
+  tags:
+    - desktop_zoom
+
+- name: Install zoom
+  command: dpkg -i /tmp/zoom_amd64.deb
+  tags:
+    - desktop_zoom

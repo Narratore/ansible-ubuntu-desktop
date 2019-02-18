@@ -7,18 +7,6 @@
     - aptitude
     - terminator
     - yakuake
-    - htop
-    - vim
-    - expect
-    - tree
-    - gzip
-    - bzip2
-    - zip
-    - unzip
-    - unrar
-    - lzop
-    - elinks
-    - ntp
     - bind9utils
     - samba
     - winbind
@@ -26,17 +14,10 @@
     - cifs-utils
     - sshfs
     - libpam-mount
-    - dnsutils
     - whois
-    - traceroute
-    - mtr
     - wireshark
-    - tshark
     - ipcalc
-    - nmap
-    - zenmap
     - wakeonlan
-    - wget
     - curl
   tags:
     - desktop_kit_shell
@@ -52,7 +33,6 @@
     - libxml2-utils
     - fop
     - publican
-#    - libservlet2.5-java
   tags:
     - desktop_kit_techdoc
 
@@ -86,6 +66,9 @@
     - git-flow
     - git-email
     - git-extras
+    - gitstats
+    - genisoimage
+    - meld
 #    - kdesvn
 #    - kdiff3
 #    - kompare
@@ -100,10 +83,12 @@
     - xchm
     - dia
     - gimp
-    - ttf-liberation
+#    - ttf-liberation
     - ttf-mscorefonts-installer
+    - aspell-en
     - aspell-es
     - shutter
+    - kazam
 #    - kcalc
 #    - kolourpaint4
   tags:
@@ -127,13 +112,8 @@
   with_items:
     - firefox
     - thunderbird
+    - enigmail
     - openjdk-8-jre
-#    - flashplugin-installer
-#    - openjdk-6-jre
-#    - enigmail
-#    - pidgin
-#    - pidgin-encryption
-#    - konversation
   tags:
     - desktop_kit_web_im_mail
 
@@ -143,7 +123,6 @@
     - xvnc4viewer
     - rdesktop
     - remmina
-#    - krdc
   tags:
     - desktop_kit_remoteadmin
 
@@ -152,13 +131,8 @@
   with_items:
     - vlc
 #    - lame
-#    - mplayer
-#    - mencoder
-#    - amarok
 #    - clementine
 #    - easytag
-#    - k3b
-#    - k3b-i18n
   tags:
     - desktop_kit_audiovideo
 

@@ -1,0 +1,9 @@
+---
+# tasks file for desktop-slack
+
+- name: Install slack package
+  apt:
+    deb: https://downloads.slack-edge.com/linux_releases/slack-desktop-{{ slack_version }}-amd64.deb
+    state: present
+  tags:
+    - desktop_slack

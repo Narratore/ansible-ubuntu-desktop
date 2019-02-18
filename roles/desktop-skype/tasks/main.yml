@@ -1,8 +1,18 @@
 ---
 # tasks file for desktop-skype
 
-- name: Agregar repositorio de partners
-  command: add-apt-repository "deb http://archive.canonical.com/ubuntu {{ ansible_distribution_release }} partner"
+- name: Configure the Skype APT key
+  apt_key: url=https://repo.skype.com/data/SKYPE-GPG-KEY state=present
+  tags:
+    - desktop_skype
+
+- name: Configure the Skype APT repositories
+  apt_repository: repo="deb [arch=amd64] https://repo.skype.com/deb stable main" state=present
+  tags:
+    - desktop_skype
+
+- name: Install apt-transport-https
+  apt: pkg=apt-transport-https state=present
   tags:
     - desktop_skype
 
@@ -11,12 +21,7 @@
   tags:
     - desktop_skype
 
-- name: Agregar arquitectura de 32 bits a dpkg
-  command: dpkg --add-architecture i386
-  tags:
-    - desktop_skype
-
-- name: Install Skype
-  apt: pkg=skype state=present
+- name: Install Skype 4 linux
+  apt: pkg=skypeforlinux state=present
   tags:
     - desktop_skype

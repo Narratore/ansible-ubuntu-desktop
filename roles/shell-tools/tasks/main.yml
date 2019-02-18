@@ -4,7 +4,6 @@
 - name: Install shell tool packages
   apt: pkg={{item}} state=installed
   with_items:
-    - man-db
     - screen
     - vim
     - psmisc
@@ -15,7 +14,6 @@
     - wget
     - rsync
     - cron
-    - mlocate
     - htop
     - iftop
     - iotop
@@ -32,11 +30,11 @@
     - shell_tools
 
 - name: Set vim dot files
-  copy: src=vim/root/1404vimrc dest=/root/.vimrc owner=root group=root mode=0640
+  copy: src=vim/root/.vimrc dest=/root/.vimrc owner=root group=root mode=0640
   tags:
     - shell_tools
 
 - name: set screen dot files
-  copy: src=screen/root/dotscreenrc-simple dest=/root/.screenrc owner=root group=root mode=0640
+  copy: src=screen/root/.screenrc dest=/root/.screenrc owner=root group=root mode=0640
   tags:
     - shell_tools
