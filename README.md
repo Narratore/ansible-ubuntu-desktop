@@ -2,12 +2,13 @@
 
 ## Introduction
 
-I use Linux as the base operating system on my personal computers at home and work,
-I don't like to do repetitive work, I prefer to automate it, one work that I'd like
-to automate is the setup process after installing the base operating system on my
-laptops, I call this, the post-setup process, the requisite to automate something
-is document it, so I wrote a guide which helps me to do this process manually, with
-a script, or with a configuration management tool like Ansible.
+I love GNU/Linux and I use it as the base operating system on my personal computers
+at home and work, I don't like to do repetitive work, I prefer to automate it.
+
+One work that I'd like to automate is the setup process after installing the base
+operating system on my laptops, I call this, the post-setup process, the requisite
+to automate something is document it, so I wrote a guide which helps me to do this
+process manually, with a script, or with a configuration management tool like Ansible.
 
 This repository contains documentation and ansible playbooks to automatically install
 all the programs I use at work and home. Most programs I use are open source, they
@@ -35,14 +36,15 @@ personally I run this tasks every time after installing the operating system:
    * Install personal productivity tools
    * Install KVM and libvirt virtualization tools
  * Install third party tools
-   * Install google chrome packages and plugins for hangouts
-   * Install NX client and server
    * Install VirtualBox
    * Install Vagrant
-   * Install Skype
-   * Install Teamviewer
+   * Install Atom
    * Install Insync
-   * Install Fprint fingerprint support
+   * Install Teamviewer
+   * Install Skype
+   * Install Slack
+   * Install Zoom
+   * Install Oh my Zsh
 
 ## Cloning the repository
 
@@ -58,7 +60,7 @@ $ cd ansible-my-kubuntu-desktop
 
 ## Installing and Testing Ansible
 
-In order to install ansible, you need to run bin/install-ansible-on-ubuntu.sh,
+In order to install ansible, you need to run **bin/install-ansible-on-ubuntu.sh**,
 for example:
 
 ```
@@ -79,7 +81,7 @@ Go to next section to run playbooks.
 
 ## The playbook
 
-The main playbook is localsystem.yml, let's display it:
+The main playbook is **localsystem.yml**, let's display it:
 
 ```
 $ cat localsystem.yml
@@ -90,7 +92,7 @@ $ cat localsystem.yml
 
 - hosts: localhost
   connection: local
-  user: changeme
+  user: ubuntu
   become: yes
 
 # Pre-Tasks
@@ -108,13 +110,17 @@ $ cat localsystem.yml
     - package-mgmt
     - shell-settings
     - shell-tools
-#    - local-storage
-#    - desktop-kit
-#    - desktop-virtualbox
-#    - desktop-vagrant
-#    - desktop-insync
-#    - desktop-teamviewer
-#    - desktop-skype
+    - local-storage
+    - desktop-kit
+    - desktop-virtualbox
+    - desktop-vagrant
+    - desktop-atom
+    - desktop-insync
+    - desktop-teamviewer
+    - desktop-skype
+    - desktop-slack
+    - desktop-zoom
+    - desktop-oh-my-zsh
 #    - desktop-google-chrome
 #    - desktop-fingerprint
 #    - desktop-flux
@@ -123,10 +129,10 @@ $ cat localsystem.yml
 ## Running the Ansible playbook
 
 Before you run ansible, plase edit localsystem.yml playbook file, change the
-variable 'user' with your own username, for example:
+variable **user** with your own username, for example:
 
 ```
-$ sed -i 's/changeme/jmedina/' localsystem.yml
+$ sed -i 's/ubuntu/jmedina/' localsystem.yml
 ```
 So, it looks like this:
 
@@ -138,47 +144,47 @@ So, it looks like this:
 ```
 
 As you could see in the playbook header, we connect to localhost with the local
-user jmedina and use sudo to gain privileges, note that 'become' replaces the
-old 'sudo' parameter.
+user jmedina and use sudo to gain privileges, note that **become** replaces the
+old **sudo** parameter.
 
 ## Running only a group of tasks using tags
 
 If you remember, in the main playbook localsystem.yml we use roles to group
 task associated to a program, I have tagged every task in the different playbooks
 for each role, so if you want to run only  the task asociated to a rol, use the
-'--tags' with a comma separaed list of tags.
+**--tags** with a comma separaed list of tags.
 
 Each role includes more that one task, some of the are grouped, task on a role
 can include more than one tag, here are the main tags:
 
- * common: system_settings
- * common: system_settings_timezone
- * package-mgmt: purge_package_mgmt
- * package-mgmt: reposetup_package_mgmt
- * shell-settings: shell_settings
- * shell-tools: shell_tools
- * local-storage: desktop_local_storage
- * desktop-kit: desktop_kit_shell
- * desktop-kit: desktop_kit_techdoc
- * desktop-kit: desktop_kit_security
- * desktop-kit: desktop_kit_development
- * desktop-kit: desktop_kit_imageedit
- * desktop-kit: desktop_kit_web_im_mail
- * desktop-kit: desktop_kit_remoteadmin
- * desktop-kit: desktop_kit_audiovideo
- * desktop-kit: desktop_kit_productivity
- * desktop-kit: desktop_kit_libvirt_desk
- * desktop-kit: desktop_kit_sshvpn
- * desktop-virtualbox: desktop_virtualbox
- * desktop-vagrant: desktop_vagrant
- * desktop-teamviewer: desktop_teamviewer
- * desktop-skype: desktop_skype
- * desktop-insync: desktop_insync
- * desktop-google-chrome: desktop_insync
- * desktop-fingerprint: desktop_fingerprint
- * desktop-flux: desktop_flux
+ * **common:** system_settings
+ * **common:** system_settings_timezone
+ * **package-mgmt:** purge_package_mgmt
+ * **package-mgmt:** reposetup_package_mgmt
+ * **shell-settings:** shell_settings
+ * **shell-tools:** shell_tools
+ * **local-storage:** desktop_local_storage
+ * **desktop-kit:** desktop_kit_shell
+ * **desktop-kit:** desktop_kit_techdoc
+ * **desktop-kit:** desktop_kit_security
+ * **desktop-kit:** desktop_kit_development
+ * **desktop-kit:** desktop_kit_imageedit
+ * **desktop-kit:** desktop_kit_web_im_mail
+ * **desktop-kit:** desktop_kit_remoteadmin
+ * **desktop-kit:** desktop_kit_audiovideo
+ * **desktop-kit:** desktop_kit_productivity
+ * **desktop-kit:** desktop_kit_libvirt_desk
+ * **desktop-kit:** desktop_kit_sshvpn
+ * **desktop-virtualbox:** desktop_virtualbox
+ * **desktop-vagrant:** desktop_vagrant
+ * **desktop-teamviewer:** desktop_teamviewer
+ * **desktop-skype:** desktop_skype
+ * **desktop-insync:** desktop_insync
+ * **desktop-google-chrome:** desktop_insync
+ * **desktop-fingerprint:** desktop_fingerprint
+ * **desktop-flux:** desktop_flux
 
-IMPORTANT: Be careful when you run tasks from the desktop-kit role, there are some
+**IMPORTANT:** Be careful when you run tasks from the desktop-kit role, there are some
 heavy apps you may not need.
 
 Now run ansible with a few simple tasks for system settings:
@@ -187,7 +193,7 @@ Now run ansible with a few simple tasks for system settings:
 $ ansible-playbook localsystem.yml -K --tags=system_settings,system_settings_timezone
 ```
 
-'NOTE:' Here we use '-K' parameter so ansible asks for user password to run tasks with privileges.
+**NOTE:** Here we use **-K** parameter so ansible asks for user password to run tasks with privileges.
 
 Let's run the tasks for the package management, shell settings and tools:
 
