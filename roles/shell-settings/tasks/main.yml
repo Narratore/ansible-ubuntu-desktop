@@ -2,7 +2,7 @@
 # tasks file for shell-settings
 
 - name: Install bash packages
-  apt: pkg={{item}} state=installed
+  apt: pkg={{item}} state=latest
   with_items:
     - bash
     - bash-completion

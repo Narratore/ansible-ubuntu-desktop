@@ -27,7 +27,7 @@
     - desktop_google_chrome
 
 - name: Install Google Chrome
-  apt: pkg=google-chrome-stable state=installed
+  apt: pkg=google-chrome-stable state=latest
   tags:
     - desktop_google_chrome
 
@@ -51,6 +51,6 @@
 #    - desktop_google_talkplugin
 
 #- name: Install Google Chrome Talk Plugin
-#  apt: pkg=google-talkplugin state=installed
+#  apt: pkg=google-talkplugin state=latest
 #  tags:
 #    - desktop_google_talkplugin

@@ -2,7 +2,7 @@
 # tasks file for shell-tools
 
 - name: Install shell tool packages
-  apt: pkg={{item}} state=installed
+  apt: pkg={{item}} state=latest
   with_items:
     - screen
     - vim

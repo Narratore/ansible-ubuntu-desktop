@@ -2,7 +2,7 @@
 # tasks file for local-storage
 
 - name: Instalación de paquetes para gestionar almacenamiento local
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=latest
   with_items:
     - lvm2
     - nfs-kernel-server

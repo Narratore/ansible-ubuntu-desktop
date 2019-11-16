@@ -2,7 +2,7 @@
 # tasks file for desktop-kit
 
 - name: Instalación de programas para trabajo en la consola o shell
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=latest
   with_items:
     - aptitude
     - terminator
@@ -23,7 +23,7 @@
     - desktop_kit_shell
 
 - name: Instalación de paquetes para documentación técnica con Docbook
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=latest
   with_items:
     - docbook-utils
     - docbook-xsl
@@ -37,7 +37,7 @@
     - desktop_kit_techdoc
 
 - name: Instalación de herramientas de seguridad para el shell y X11
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=latest
   with_items:
     - openssl
     - libnss3-tools
@@ -55,7 +55,7 @@
     - desktop_kit_security
 
 - name: Instalación de Herramientas para Desarrollo
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=latest
   with_items:
     - build-essential
     - diffutils
@@ -77,7 +77,7 @@
     - desktop_kit_development
 
 - name: Instalación de Herramientas para oficina y edición de imágenes
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=latest
   with_items:
     - xpdf
     - xchm
@@ -95,7 +95,7 @@
     - desktop_kit_imageedit
 
 #- name: Instalación de paquetes para extras para KDE
-#  apt: pkg={{ item }} state=installed
+#  apt: pkg={{ item }} state=latest
 #  with_items:
 #    - kscreensaver
 #    - kscreensaver-xsavers
@@ -108,7 +108,7 @@
 #    - desktop_kit_kdeextras
 
 - name: Instalación de paquetes para Web, IM, Correo y otros
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=latest
   with_items:
     - firefox
     - thunderbird
@@ -118,7 +118,7 @@
     - desktop_kit_web_im_mail
 
 - name: Instalación de paquetes para remote management
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=latest
   with_items:
     - xvnc4viewer
     - rdesktop
@@ -127,7 +127,7 @@
     - desktop_kit_remoteadmin
 
 - name: Instalación de paquetes para Audio y Video
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=latest
   with_items:
     - vlc
 #    - lame
@@ -137,7 +137,7 @@
     - desktop_kit_audiovideo
 
 - name: Instalación de Herramientas de Productividad
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=latest
   with_items:
     - freeplane
     - cherrytree
@@ -145,7 +145,7 @@
     - desktop_kit_productivity
 
 - name: Instalación de sistema de virtualización KVM con virt-manager
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=latest
   with_items:
     - qemu-kvm
     - libvirt-bin
@@ -156,7 +156,7 @@
     - desktop_kit_libvirt_desk
 
 - name: Instalación de paquetes adicionales
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=latest
   with_items:
     - openssh-client
     - openssh-server

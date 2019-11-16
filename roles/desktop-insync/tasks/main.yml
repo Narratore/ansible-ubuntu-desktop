@@ -17,7 +17,7 @@
     - desktop_insync
 
 - name: Install Insync desktop package
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=latest
   with_items:
     - insync
   tags:

@@ -17,7 +17,7 @@
     - desktop_fingerprint
 
 - name: Instalación de paquetes adicionales
-  apt: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=latest
   with_items:
     - libfprint0
     - fprint-demo
