@@ -1,0 +1,4 @@
+---
+# defaults file for role
+
+gcloud_apt_file: /etc/apt/sources.list.d/google-cloud-sdk.list

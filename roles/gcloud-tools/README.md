@@ -1,7 +1,7 @@
-local-storage
-=============
+gcloud-tools
+============
 
-Deploy local storage on ubuntu desktop.
+Deploy gcloud on ubuntu desktop.
 
 Requirements
 ------------
@@ -19,9 +19,9 @@ Example Playbook
 
 To use this role, just include it in your playbook, for example:
 
-    - hosts: desktop
+    - hosts: servers
       roles:
-         - local-storage
+         - gcloud-tools
 
 License
 -------

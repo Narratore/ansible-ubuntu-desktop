@@ -36,6 +36,7 @@
     - desktop-slack
     - desktop-zoom
     - desktop-oh-my-zsh
+    - gcloud-tools
 #    - desktop-google-chrome
 #    - desktop-fingerprint
 #    - desktop-flux

@@ -1,38 +1,62 @@
-Role Name
-=========
+desktop-zoom
+============
 
-A brief description of the role goes here.
+Deploy zoom on ubuntu desktop.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Ubuntu based system.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+These are default variables for this role:
+
+zoom:
+  dependencies:
+    - libglib2.0-0
+    - libxcb-shape0
+    - libxcb-shm0
+    - libxcb-xfixes0
+    - libxcb-randr0
+    - libxcb-image0
+    - libfontconfig1
+    - libgl1-mesa-glx
+    - libegl1-mesa
+    - libxi6
+    - libsm6
+    - libxrender1
+    - libpulse0
+    - libxcomposite1
+    - libxslt1.1
+    - libsqlite3-0
+    - libxcb-keysyms1
+    - libxcb-xtest0
+    - libdbus-1-3
+    - libgstreamer-plugins-base1.0-0
+    - dconf-cli
+    - gir1.2-ibus-1.0
+    - ibus
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
-
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+To use this role, just include it in your playbook, for example:
 
-    - hosts: servers
+    - hosts: desktop
       roles:
-         - { role: username.rolename, x: 42 }
+         - desktop-zoom
 
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Please any question, please contact the author at: jorge.medina@kronops.com.mx.

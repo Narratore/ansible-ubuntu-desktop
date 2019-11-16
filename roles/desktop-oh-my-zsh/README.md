@@ -1,7 +1,7 @@
 destkop-oh-my-zsh
-================
+=================
 
-Tasks for setting up oh my zsh.
+Deploy oh my zsh on ubuntu desktop.
 
 Requirements
 ------------
@@ -13,11 +13,11 @@ Role Variables
 
 These are default variables for this role:
 
-* oh_my_zsh_repo: https://github.com/robbyrussell/oh-my-zsh
-* oh_my_zsh_dir: ~/.oh-my-zsh
-* oh_my_zsh_users:
+oh_my_zsh_repo: https://github.com/robbyrussell/oh-my-zsh
+oh_my_zsh_dir: ~/.oh-my-zsh
+oh_my_zsh_users:
   - "{{ ansible_ssh_user }}"
-* oh_my_zsh_rc: ~/.zshrc
+oh_my_zsh_rc: ~/.zshrc
 
 Dependencies
 ------------

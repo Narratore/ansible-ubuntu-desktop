@@ -1,0 +1,23 @@
+---
+# tasks file for role
+
+
+- name: Add Google Chrome key
+  shell: curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+  tags:
+    - gcloud_tools
+
+- name: Add Google Chrome repo
+  copy: content="deb http://packages.cloud.google.com/apt cloud-sdk-bionic main" dest={{gcloud_apt_file}} owner=root group=root mode=644
+  tags:
+    - gcloud_tools
+
+- name: Update apt cache
+  apt: update_cache=yes cache_valid_time=3600
+  tags:
+    - gcloud_tools
+
+- name: Install Google Cloud Tools
+  apt: pkg=google-cloud-sdk state=present
+  tags:
+    - gcloud_tools
