@@ -19,6 +19,8 @@
     - ipcalc
     - wakeonlan
     - curl
+    - jq
+    - powertop
   tags:
     - desktop_kit_shell
 
@@ -48,9 +50,7 @@
     - ssh-askpass
     - pwgen
     - keepassx
-    #- pinentry-curses
-    #- pinentry-qt4
-    #- kgpg
+    - kgpg
   tags:
     - desktop_kit_security
 
@@ -68,11 +68,9 @@
     - git-extras
     - gitstats
     - genisoimage
+    - unetbootin
     - meld
-#    - kdesvn
-#    - kdiff3
-#    - kompare
-#    - mysql-workbench
+    - kompare
   tags:
     - desktop_kit_development
 
@@ -83,14 +81,13 @@
     - xchm
     - dia
     - gimp
-#    - ttf-liberation
     - ttf-mscorefonts-installer
     - aspell-en
     - aspell-es
     - shutter
     - kazam
-#    - kcalc
-#    - kolourpaint4
+    - kcalc
+    - kolourpaint
   tags:
     - desktop_kit_imageedit
 
@@ -111,6 +108,7 @@
   apt: pkg={{ item }} state=latest
   with_items:
     - firefox
+    - firefox-locale-es
     - thunderbird
     - enigmail
     - openjdk-8-jre
@@ -161,5 +159,6 @@
     - openssh-client
     - openssh-server
     - openvpn
+    - network-manager-openvpn-gnome
   tags:
     - desktop_kit_sshvpn
