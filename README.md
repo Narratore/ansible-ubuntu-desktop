@@ -3,12 +3,13 @@
 ## Introduction
 
 I love GNU/Linux and I use it as the base operating system on my personal computers
-at home and work, I don't like to do repetitive work, I prefer to automate it.
+at home and work.
 
-One work that I'd like to automate is the setup process after installing the base
-operating system on my laptops, I call this, the post-setup process, the requisite
-to automate something is document it, so I wrote a guide which helps me to do this
-process manually, with a script, or with a configuration management tool like Ansible.
+I don't like to do repetitive work, I prefer to automate it, one task that I'd like
+to automate is the setup process after installing the base operating system on my
+laptops, I call this, the post-setup process, the requisite to automate something
+is document it, so I wrote a guide which helps me to do this process manually,
+with a script, or with a configuration management tool like Ansible.
 
 This repository contains documentation and ansible playbooks to automatically install
 all the programs I use at work and home. Most programs I use are open source, they
