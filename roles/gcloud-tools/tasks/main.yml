@@ -2,12 +2,12 @@
 # tasks file for role
 
 
-- name: Add Google Chrome key
+- name: Add Google Cloud APT key
   shell: curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
   tags:
     - gcloud_tools
 
-- name: Add Google Chrome repo
+- name: Add Google Cloud APT repo
   copy: content="deb http://packages.cloud.google.com/apt cloud-sdk-bionic main" dest={{gcloud_apt_file}} owner=root group=root mode=644
   tags:
     - gcloud_tools
