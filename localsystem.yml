@@ -1,25 +1,11 @@
 ---
-#
-# Playbook: Local System
-#
-
 - hosts: localhost
   connection: local
-  user: ubuntu
+  user: jmedina
   become: yes
-  
-# Pre-Tasks
-
   pre_tasks:
-
-  - name: Pretask | Running pre tasks routine
-    shell: echo 'I":" Beginning to configure the system...'
-
   - name: Pretask | Update apt cache
     apt: update_cache=yes
-
-# Main-Tasks
-
   roles:
     - common
     - package-mgmt
@@ -27,16 +13,11 @@
     - shell-tools
     - local-storage
     - desktop-kit
-    - desktop-virtualbox
-    - desktop-vagrant
-    - desktop-atom
     - desktop-insync
     - desktop-teamviewer
     - desktop-skype
     - desktop-slack
     - desktop-zoom
-    - desktop-oh-my-zsh
-    - gcloud-tools
 #    - desktop-google-chrome
 #    - desktop-fingerprint
 #    - desktop-flux
