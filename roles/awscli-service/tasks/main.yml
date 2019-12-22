@@ -1,0 +1,36 @@
+---
+# tasks file for role
+
+- name: Install python-pip
+  apt:
+    name: python-pip
+    state: latest
+
+- name: Install AWS CLI module
+  pip:
+    name: awscli
+    state: latest
+
+- name: Create the AWS config directory
+  file:
+    path: "{{ aws_cli_user_home }}/.aws"
+    owner: "{{ aws_cli_user }}"
+    group: "{{ aws_cli_group }}"
+    state: directory
+    mode: 0750
+
+- name: Create AWS CLI config file
+  template:
+    src: aws_cli_config.j2
+    dest: "{{ aws_cli_user_home }}/.aws/config"
+    owner: "{{ aws_cli_user }}"
+    group: "{{ aws_cli_group }}"
+    mode: 0600
+
+- name: Create AWS CLI credentials file
+  template:
+    src: aws_cli_credentials.j2
+    dest: "{{ aws_cli_user_home }}/.aws/credentials"
+    owner: "{{ aws_cli_user }}"
+    group: "{{ aws_cli_group }}"
+    mode: 0600

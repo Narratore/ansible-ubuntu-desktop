@@ -1,0 +1,5 @@
+---
+# defaults file for docker-toolkit
+
+docker_repo_key: https://download.docker.com/linux/ubuntu/gpg
+docker_user: jmedina

@@ -1,0 +1,13 @@
+---
+
+- name: Download & install Terraform
+  unarchive:
+    src: "{{ terraform_url }}"
+    dest: /usr/local/bin
+    remote_src: True
+
+- name: Link terraform to bin directory
+  file:
+    src: /usr/local/bin/terraform
+    dest: /usr/bin/terraform
+    state: link

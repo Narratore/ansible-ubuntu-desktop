@@ -1,0 +1,9 @@
+---
+# defaults file for packer-service
+
+packer_version: 1.2.5
+packer_sha256sum: bc58aa3f3db380b76776e35f69662b49f3cf15cf80420fc81a15ce971430824c
+packer_username: jmedina
+packer_groupname: jmedina
+packer_staging_path: /home/jmedina/data/images/staging
+packer_isos_path: /home/jmedina/data/Downloads/isos

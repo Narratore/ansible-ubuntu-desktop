@@ -1,0 +1,5 @@
+---
+# defaults file for terraform-service
+
+terraform_version: 0.12.13
+terraform_url: https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_linux_amd64.zip

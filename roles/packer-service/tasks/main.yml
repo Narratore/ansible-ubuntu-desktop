@@ -1,0 +1,41 @@
+---
+# tasks file for packer-service
+
+- name: Install QEMU tools
+  apt: name="{{ packages }}" state=present
+  vars:
+    packages:
+      - git
+      - make
+      - qemu-utils
+
+- name: Download Packer package from hashicorp
+  get_url: >
+    url={{ packer_url }}
+    dest={{ packer_download_dir }}/packer.zip
+    sha256sum={{ packer_sha256sum }}
+
+- name: Extract the Packer package to installation directory
+  command: unzip {{ packer_download_dir }}/packer.zip -d {{ packer_install_dir }}
+  args:
+    creates: "{{ packer_install_dir }}/packer"
+
+- name: Add user {{ packer_username }} kvm and libvirt groups
+  user: name={{ packer_username }}
+    shell=/bin/bash
+    groups=kvm,libvirt
+    append=yes
+
+- name: Create isos media directory
+  file: path={{ packer_isos_path }}
+    owner=root
+    group={{ packer_username }}
+    mode=0755
+    state=directory
+
+- name: Create images staging directory
+  file: path={{ packer_staging_path }}/server-images
+    owner={{ packer_username }}
+    group={{ packer_groupname }}
+    mode=0775
+    state=directory

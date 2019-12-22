@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  connection: local
+  user: jmedina
+  become: yes
+  pre_tasks:
+  - name: Pretask | Update apt cache
+    apt: update_cache=yes
+  roles:
+    - desktop-oh-my-zsh
+    - desktop-atom
+    - gcloud-tools
+    - desktop-virtualbox
+    - desktop-vagrant
+    - packer-service
+    - terraform-service
+    - awscli-service
+    - docker-toolkit

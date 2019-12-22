@@ -1,0 +1,10 @@
+---
+# tasks file for docker-toolkit
+
+#- name: Check docker if installed
+#  shell: command -v docker >/dev/null 2>&1
+#  register: docker_is_installed
+#  ignore_errors: True
+
+- include: task_install_docker.yml
+#  when: docker_is_installed.rc == 1

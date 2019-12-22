@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: Jorge Armando Medina
+  description: This role installs Packer for building fundamental images.
+  company: KronOps
+  license: MIT
+  min_ansible_version: 2.4
+  platforms:
+  - name: Ubuntu
+    versions:
+    - xenial
+  categories:
+  - virtualization
+dependencies: []

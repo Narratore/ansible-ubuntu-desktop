@@ -1,0 +1,7 @@
+---
+# handlers file for packer-service
+
+- name: restart swarm
+  service: name=swarm state=restarted
+  tags:
+    - packer_service
