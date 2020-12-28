@@ -7,7 +7,7 @@
 # Email: jorge.medina@kronops.com.mx
 #
 
-#set -x
+set -x
 
 # vars
 
@@ -20,7 +20,8 @@ echo "Installing software-properties-common."
 sudo apt-get -qq install software-properties-common
 
 echo "Installing Ansible dependencies."
-sudo apt-get install -qq -y python3-dev python3-yaml python3-jinja2 python3-paramiko python3-crypto python3-simplejson python3-setuptools sshpass
+sudo apt-get install -qq -y python3-dev python3-yaml python3-jinja2 \
+  python3-paramiko python3-crypto python3-simplejson python3-setuptools sshpass
 
 echo "Installing ansible from ansible ppa repository."
 sudo apt-add-repository -y ppa:ansible/ansible
