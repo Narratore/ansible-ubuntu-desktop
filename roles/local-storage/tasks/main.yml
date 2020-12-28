@@ -1,18 +1,16 @@
 ---
 # tasks file for local-storage
 
-- name: Instalación de paquetes para gestionar almacenamiento local
-  apt: pkg={{ item }} state=latest
-  with_items:
-    - lvm2
-    - nfs-kernel-server
-    - nfs-common
-    - portmap
-    - iotop
-    - smartmontools
-    - gparted
-    - gnome-disk-utility
-    - cryptsetup
+- name: Install packages used for local storage mangement
+  apt:
+    name:
+      - lvm2
+      - iotop
+      - smartmontools
+      - gparted
+      - gnome-disk-utility
+      - cryptsetup
+    state: latest
   tags:
     - desktop_local_storage
 
@@ -20,3 +18,4 @@
   copy: src=etc/cron.daily/fstrim dest=/etc/cron.daily/fstrim owner=root group=root mode=755
   tags:
     - desktop_local_storage
+

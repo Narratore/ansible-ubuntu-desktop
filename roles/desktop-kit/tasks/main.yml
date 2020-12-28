@@ -1,163 +1,155 @@
 ---
 # tasks file for desktop-kit
 
-- name: Instalación de programas para trabajo en la consola o shell
-  apt: pkg={{ item }} state=latest
-  with_items:
-    - aptitude
-    - terminator
-    - yakuake
-    - bind9utils
-    - samba
-    - winbind
-    - smbclient
-    - cifs-utils
-    - sshfs
-    - libpam-mount
-    - whois
-    - wireshark
-    - ipcalc
-    - wakeonlan
-    - curl
-    - jq
-    - powertop
+- name: Install cli programs used for systems management
+  apt:
+    name:
+      - aptitude
+      - terminator
+      - yakuake
+      - bind9utils
+      - samba
+      - winbind
+      - smbclient
+      - cifs-utils
+      - sshfs
+      - libpam-mount
+      - whois
+      - wireshark
+      - ipcalc
+      - wakeonlan
+      - curl
+      - jq
+      - powertop
+    state: latest
   tags:
     - desktop_kit_shell
 
-- name: Instalación de paquetes para documentación técnica con Docbook
-  apt: pkg={{ item }} state=latest
-  with_items:
-    - docbook-utils
-    - docbook-xsl
-    - docbook2odf
-    - xsltproc
-    - xmlto
-    - libxml2-utils
-    - fop
-    - publican
+- name: Install programs used for writing technical documentation
+  apt:
+    name:
+      - docbook-utils
+      - docbook-xsl
+      - xsltproc
+      - xmlto
+      - libxml2-utils
+      - fop
+      - publican
+    state: latest
   tags:
     - desktop_kit_techdoc
 
-- name: Instalación de herramientas de seguridad para el shell y X11
-  apt: pkg={{ item }} state=latest
-  with_items:
-    - openssl
-    - libnss3-tools
-    - openssh-client
-    - gnupg
-    - gnupg-agent
-    - keychain
-    - ssh-askpass
-    - pwgen
-    - keepassx
-    - kgpg
+- name: Install security tools used for cli and x11
+  apt:
+    name:
+      - openssl
+      - libnss3-tools
+      - openssh-client
+      - gnupg
+      - gnupg-agent
+      - keychain
+      - ssh-askpass
+      - pwgen
+      - keepassx
+      - kgpg
+    state: latest
   tags:
     - desktop_kit_security
 
-- name: Instalación de Herramientas para Desarrollo
-  apt: pkg={{ item }} state=latest
-  with_items:
-    - build-essential
-    - diffutils
-    - cvs
-    - subversion
-    - git
-    - git-core
-    - git-flow
-    - git-email
-    - git-extras
-    - gitstats
-    - genisoimage
-    - meld
-    - kompare
+- name: Install programs for development
+  apt:
+    name:
+      - build-essential
+      - diffutils
+      - cvs
+      - subversion
+      - git
+      - git-core
+      - git-flow
+      - git-email
+      - git-extras
+      - genisoimage
+      - meld
+      - kompare
+    state: latest
   tags:
     - desktop_kit_development
 
-- name: Instalación de Herramientas para oficina y edición de imágenes
-  apt: pkg={{ item }} state=latest
-  with_items:
-    - xpdf
-    - xchm
-    - dia
-    - gimp
-    - ttf-mscorefonts-installer
-    - aspell-en
-    - aspell-es
-    - shutter
-    - kazam
-    - kcalc
-    - kolourpaint
+- name: Install office tools and image editing
+  apt:
+    name:
+      - xchm
+      - dia
+      - gimp
+      - ttf-mscorefonts-installer
+      - aspell-en
+      - aspell-es
+      - kazam
+      - kcalc
+      - kolourpaint
+    state: latest
   tags:
     - desktop_kit_imageedit
 
-#- name: Instalación de paquetes para extras para KDE
-#  apt: pkg={{ item }} state=latest
-#  with_items:
-#    - kscreensaver
-#    - kscreensaver-xsavers
-#    - xscreensaver
-#    - xscreensaver-gl
-#    - xscreensaver-data
-#    - xscreensaver-data-extra
-#    - xscreensaver-gl-extra
-#  tags:
-#    - desktop_kit_kdeextras
-
-- name: Instalación de paquetes para Web, IM, Correo y otros
-  apt: pkg={{ item }} state=latest
-  with_items:
-    - firefox
-    - firefox-locale-es
-    - thunderbird
-    - enigmail
-    - openjdk-8-jre
+- name: Install programs for web, email, chat and others
+  apt:
+    name:
+      - firefox
+      - firefox-locale-es
+      - thunderbird
+      - enigmail
+      - openjdk-8-jre
+      - openjdk-11-jre
+    state: latest
   tags:
     - desktop_kit_web_im_mail
 
-- name: Instalación de paquetes para remote management
-  apt: pkg={{ item }} state=latest
-  with_items:
-    - xvnc4viewer
-    - rdesktop
-    - remmina
+- name: Install programs for remote desktop management
+  apt:
+    name:
+      - rdesktop
+      - remmina
+    state: latest
   tags:
     - desktop_kit_remoteadmin
 
-- name: Instalación de paquetes para Audio y Video
-  apt: pkg={{ item }} state=latest
-  with_items:
-    - vlc
-#    - lame
-#    - clementine
-#    - easytag
+- name: Install programs for audio and video
+  apt:
+    name:
+      - vlc
+      - ffmpeg
+      - ffmpeg-doc
+    state: latest
   tags:
     - desktop_kit_audiovideo
 
-- name: Instalación de Herramientas de Productividad
-  apt: pkg={{ item }} state=latest
-  with_items:
-    - freeplane
-    - cherrytree
+- name: Install productivity tools
+  apt:
+    name:
+      - freeplane
+    state: latest
   tags:
     - desktop_kit_productivity
 
-- name: Instalación de sistema de virtualización KVM con virt-manager
-  apt: pkg={{ item }} state=latest
-  with_items:
-    - qemu-kvm
-    - libvirt-bin
-    - virt-manager
-    - virt-viewer
-    - ssh-askpass
+- name: Install virtualization tools for KVM
+  apt:
+    name:
+      - qemu-kvm
+      - virt-manager
+      - virt-viewer
+      - ssh-askpass
+    state: latest
   tags:
     - desktop_kit_libvirt_desk
 
-- name: Instalación de paquetes adicionales
-  apt: pkg={{ item }} state=latest
-  with_items:
-    - openssh-client
-    - openssh-server
-    - openvpn
-    - network-manager-openvpn-gnome
+- name: Install additional packages
+  apt:
+    name:
+      - openssh-client
+      - openssh-server
+      - openvpn
+      - network-manager-openvpn-gnome
+    state: latest
   tags:
     - desktop_kit_sshvpn
+

@@ -2,30 +2,30 @@
 # tasks file for shell-tools
 
 - name: Install shell tool packages
-  apt: pkg={{item}} state=latest
-  with_items:
-    - screen
-    - vim
-    - psmisc
-    - bzip2
-    - less
-    - unzip
-    - lzop
-    - wget
-    - rsync
-    - cron
-    - htop
-    - iftop
-    - iotop
-    - dnsutils
-    - ethtool
-    - tcpdump
-    - tshark
-    - traceroute
-    - mtr
-    - nmap
-    - zenmap
-    - elinks
+  apt:
+    name:
+      - screen
+      - vim
+      - psmisc
+      - bzip2
+      - less
+      - unzip
+      - lzop
+      - wget
+      - rsync
+      - cron
+      - htop
+      - iftop
+      - iotop
+      - dnsutils
+      - ethtool
+      - tcpdump
+      - tshark
+      - traceroute
+      - mtr
+      - nmap
+      - elinks
+    state: latest
   tags:
     - shell_tools
 
@@ -38,3 +38,4 @@
   copy: src=screen/root/.screenrc dest=/root/.screenrc owner=root group=root mode=0640
   tags:
     - shell_tools
+

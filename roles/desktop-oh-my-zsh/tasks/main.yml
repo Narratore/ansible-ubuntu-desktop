@@ -3,12 +3,10 @@
 
 - name: Install dependencies for oh my zsh
   apt:
-    name: "{{ packages }}"
-    state: present
-  vars:
-    packages:
-    - zsh
-    - git-core
+    name:
+      - zsh
+      - git-core
+    state: latest
   tags:
     - desktop_oh_my_zsh
 
@@ -16,6 +14,7 @@
   git: 
     repo: "{{ oh_my_zsh_repo }}"
     dest: "{{ oh_my_zsh_dir }}"
+    force: yes
   become_user: "{{ item }}"
   with_items: "{{ oh_my_zsh_users }}"
   tags:
@@ -38,3 +37,4 @@
   with_items: "{{ oh_my_zsh_users }}"
   tags:
     - desktop_oh_my_zsh
+

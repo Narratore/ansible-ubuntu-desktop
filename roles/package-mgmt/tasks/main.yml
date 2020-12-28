@@ -2,19 +2,22 @@
 # tasks file for package-mgmt
 
 - name: Remove unneeded packages to speed up Ansible on Ubuntu
-  apt: name={{ item }} state=absent purge=yes
-  with_items:
-    - landscape-client
-    - landscape-common
-    - whoopsie
-  when: ansible_distribution == 'Ubuntu'
+  apt:
+    name:
+      - landscape-client
+      - landscape-common
+      - whoopsie
+    state: absent
+    purge: yes
   tags:
     - clean_package_mgmt
 
 - name: Remove unattended upgrades packages to eliminate kernel conflicts and fill / space.
-  apt: name={{ item }} state=absent purge=yes
-  with_items:
-    - unattended-upgrades
+  apt:
+    name:
+      - unattended-upgrades
+    state: absent
+    purge: yes
   tags:
     - clean_package_mgmt
 
