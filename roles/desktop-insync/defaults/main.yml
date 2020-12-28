@@ -1,2 +1,5 @@
 ---
 # defaults file for desktop-insync
+
+insync_repo_key: ACCAF35C
+insync_repo_url: http://apt.insync.io/ubuntu

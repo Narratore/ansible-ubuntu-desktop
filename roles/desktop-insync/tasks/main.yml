@@ -2,12 +2,12 @@
 # tasks file for desktop-insync
 
 - name: Configure Insync's repository APT key
-  apt_key: keyserver=keyserver.ubuntu.com id=ACCAF35C state=present
+  apt_key: keyserver=keyserver.ubuntu.com id={{ insync_repo_key }} state=present
   tags:
     - desktop_insync
 
 - name: Add Insync Ubuntu Repository to keychain
-  apt_repository: repo='deb http://apt.insynchq.com/ubuntu {{ ansible_distribution_release }} non-free contrib' state=present
+  apt_repository: repo='deb {{ insync_repo_url }} {{ ansible_distribution_release }} non-free contrib' state=present
   tags:
     - desktop_insync
 
@@ -17,8 +17,10 @@
     - desktop_insync
 
 - name: Install Insync desktop package
-  apt: pkg={{ item }} state=latest
-  with_items:
-    - insync
+  apt:
+    name:
+      - insync
+      - insync-dolphin
+    state: present
   tags:
     - desktop_insync
