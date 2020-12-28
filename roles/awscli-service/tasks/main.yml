@@ -3,7 +3,7 @@
 
 - name: Install python-pip
   apt:
-    name: python-pip
+    name: python3-pip
     state: latest
 
 - name: Install AWS CLI module

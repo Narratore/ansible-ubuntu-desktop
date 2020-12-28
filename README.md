@@ -276,13 +276,12 @@ $ vim localsystem.yml
     - shell-tools
     - local-storage
     - desktop-kit
+    - desktop-fingerprint
     - desktop-virtualbox
     - desktop-vagrant
     - desktop-insync
 #    - desktop-teamviewer
-#    - desktop-skype
 #    - desktop-google-chrome
-#    - desktop-fingerprint
 ```
 That is, if you want to clone this repository go ahead, please give feed back if you want to help to improve this.
 
