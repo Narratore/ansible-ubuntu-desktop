@@ -13,8 +13,8 @@ with a script, or with a configuration management tool like Ansible.
 
 This repository contains documentation and ansible playbooks to automatically install
 all the programs I use at work and home. Most programs I use are open source, they
-are included in the official repositories of Ubuntu, in this case for Ubuntu 18.04
-(bionic), I also requiere other programs wich are not open source, at least they are
+are included in the official repositories of Ubuntu, in this case for Ubuntu 20.04
+(focal), I also requiere other programs wich are not open source, at least they are
 freely available.
 
 ### Objetives
@@ -37,15 +37,23 @@ personally I run this tasks every time after installing the operating system:
    * Install personal productivity tools
    * Install KVM and libvirt virtualization tools
  * Install third party tools
-   * Install VirtualBox
-   * Install Vagrant
-   * Install Atom
-   * Install Insync
-   * Install Teamviewer
-   * Install Skype
-   * Install Slack
-   * Install Zoom
    * Install Oh my Zsh
+   * Install Teamviewer
+   * Install Google Chrome
+   * Install Insync
+   * Install Flux (disabled by default)
+   * Install Fingerprint (disabled by default)
+   * Install Skype (disabled by default)
+   * Install Slack (disabled by default)
+   * Install Zoom (disabled by default)
+   * Install Atom (optional localdev)
+   * Install Google Cloud SDK (optional localdev.yml)
+   * Install VirtualBox (optional localdev.yml)
+   * Install Vagrant (option localdev.yml)
+   * Install Packer (option localdev.yml)
+   * Install Terraform (option localdev.yml)
+   * Install AWS CLI (option localdev.yml)
+   * Install Docker (option localdev.yml)
 
 ## Cloning the repository
 
@@ -87,25 +95,13 @@ The main playbook is **localsystem.yml**, let's display it:
 ```
 $ cat localsystem.yml
 ---
-#
-# Playbook: Local System
-#
-
 - hosts: localhost
   connection: local
   user: ubuntu
   become: yes
-
-# Pre-Tasks
-
   pre_tasks:
-
-  - name: Pretask | Running pre tasks routine
-    shell: echo 'I":" Beginning to configure the system...'
-
   - name: Pretask | Update apt cache
     apt: update_cache=yes
-
   roles:
     - common
     - package-mgmt
@@ -113,18 +109,16 @@ $ cat localsystem.yml
     - shell-tools
     - local-storage
     - desktop-kit
-    - desktop-virtualbox
-    - desktop-vagrant
-    - desktop-atom
-    - desktop-insync
-    - desktop-teamviewer
-    - desktop-skype
-    - desktop-slack
-    - desktop-zoom
     - desktop-oh-my-zsh
-#    - desktop-google-chrome
-#    - desktop-fingerprint
-#    - desktop-flux
+    - desktop-teamviewer
+    - desktop-google-chrome
+    - desktop-insync
+    #- desktop-flux
+    #- desktop-fingerprint
+    #- desktop-skype
+    #- desktop-slack
+    #- desktop-zoom
+
 ```
 
 ## Running the Ansible playbook
@@ -147,6 +141,9 @@ So, it looks like this:
 As you could see in the playbook header, we connect to localhost with the local
 user jmedina and use sudo to gain privileges, note that **become** replaces the
 old **sudo** parameter.
+
+If you want to install those development and cloud management tools on your system,
+you can run the **localdev.yml** playbook.
 
 ## Running only a group of tasks using tags
 
