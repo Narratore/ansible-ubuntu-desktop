@@ -36,15 +36,16 @@ personally I run this tasks every time after installing the operating system:
    * Install audio and video packages
    * Install personal productivity tools
    * Install KVM and libvirt virtualization tools
- * Install third party tools
+   * Install Fingerprint reader
    * Install Oh my Zsh
+ * Install extra communications, remote management, web and cloud sync
    * Install Teamviewer
    * Install Google Chrome
    * Install Insync
-   * Install Fingerprint (disabled by default)
-   * Install Slack (disabled by default)
    * Install Zoom (disabled by default)
-   * Install Atom (optional localdev)
+   * Install Slack (disabled by default)
+ * Install extra developer and cloud admin tools
+   * Install Atom (optional localdev.yml)
    * Install Google Cloud SDK (optional localdev.yml)
    * Install VirtualBox (optional localdev.yml)
    * Install Vagrant (option localdev.yml)
@@ -107,15 +108,13 @@ $ cat localsystem.yml
     - shell-tools
     - local-storage
     - desktop-kit
+    - desktop-fingerprint
     - desktop-oh-my-zsh
     - desktop-teamviewer
     - desktop-google-chrome
     - desktop-insync
-    #- desktop-flux
-    #- desktop-fingerprint
-    #- desktop-skype
-    #- desktop-slack
     #- desktop-zoom
+    #- desktop-slack
 
 ```
 
@@ -139,6 +138,13 @@ So, it looks like this:
 As you could see in the playbook header, we connect to localhost with the local
 user jmedina and use sudo to gain privileges, note that **become** replaces the
 old **sudo** parameter.
+
+```
+$ ansible-playbook localsystem.yml -K
+BECOME password:
+```
+
+**NOTE:** Here we use **-K** parameter so ansible asks for user password to run tasks with privileges.
 
 If you want to install those development and cloud management tools on your system,
 you can run the **localdev.yml** playbook.
@@ -171,14 +177,12 @@ can include more than one tag, here are the main tags:
  * **desktop-kit:** desktop_kit_productivity
  * **desktop-kit:** desktop_kit_libvirt_desk
  * **desktop-kit:** desktop_kit_sshvpn
+ * **desktop-fingerprint:** desktop_fingerprint
+ * **desktop-google-chrome:** desktop_insync
+ * **desktop-insync:** desktop_insync
  * **desktop-virtualbox:** desktop_virtualbox
  * **desktop-vagrant:** desktop_vagrant
  * **desktop-teamviewer:** desktop_teamviewer
- * **desktop-skype:** desktop_skype
- * **desktop-insync:** desktop_insync
- * **desktop-google-chrome:** desktop_insync
- * **desktop-fingerprint:** desktop_fingerprint
- * **desktop-flux:** desktop_flux
 
 **IMPORTANT:** Be careful when you run tasks from the desktop-kit role, there are some
 heavy apps you may not need.
@@ -212,7 +216,7 @@ $ ansible-playbook localsystem.yml -K --tags=desktop_local_storage
 Let's run some tasks for local development:
 
 ```
-$ ansible-playbook localsystem.yml -K --tags=desktop_virtualbox,desktop_vagrant
+$ ansible-playbook localdev.yml -K --tags=desktop_virtualbox,desktop_vagrant
 ```
 
 ## Creating new roles
