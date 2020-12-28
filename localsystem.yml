@@ -17,8 +17,7 @@
     - desktop-teamviewer
     - desktop-google-chrome
     - desktop-insync
-    #- desktop-fingerprint
-    #- desktop-skype
+    - desktop-fingerprint
     #- desktop-slack
     #- desktop-zoom
  

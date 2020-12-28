@@ -42,7 +42,6 @@ personally I run this tasks every time after installing the operating system:
    * Install Google Chrome
    * Install Insync
    * Install Fingerprint (disabled by default)
-   * Install Skype (disabled by default)
    * Install Slack (disabled by default)
    * Install Zoom (disabled by default)
    * Install Atom (optional localdev)
