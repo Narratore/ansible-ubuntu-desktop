@@ -13,11 +13,11 @@
     - shell-tools
     - local-storage
     - desktop-kit
+    - desktop-fingerprint
     - desktop-oh-my-zsh
     - desktop-teamviewer
     - desktop-google-chrome
     - desktop-insync
-    - desktop-fingerprint
-    #- desktop-slack
     #- desktop-zoom
+    #- desktop-slack
  

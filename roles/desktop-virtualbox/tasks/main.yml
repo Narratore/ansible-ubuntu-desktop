@@ -3,15 +3,15 @@
 
 - name: Install virtualbox build-esential and dkms dependencies
   apt:
-    name: "{{ item }}"
+    name:
+      - build-essential
+      - dkms
+      - unzip
     state: latest
-    update_cache: yes
-  with_items:
-    - build-essential
-    - dkms
-    - unzip
+  tags:
+    - desktop_virtualbox
 
-- name: Configure the 2016 Oracle APT key
+- name: Configure the Oracle 2016 APT key
   apt_key: url=https://www.virtualbox.org/download/oracle_vbox_2016.asc state=present
   tags:
     - desktop_virtualbox
@@ -36,8 +36,12 @@
   tags:
     - desktop_virtualbox
 
-- name: Install VirtualBox
-  apt: pkg=virtualbox-{{ virtualbox_version }} state=present
+- name: Install VirtualBox and friends
+  apt:
+    name:
+      - virtualbox-{{ virtualbox_version }}
+      - virtualbox-dkms
+    state: present
   tags:
     - desktop_virtualbox
 
@@ -45,3 +49,4 @@
   user: name={{ ansible_user_id }} groups=vboxusers append=yes
   tags:
     - desktop_virtualbox
+
