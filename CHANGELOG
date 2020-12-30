@@ -1,0 +1,14 @@
+# Change Log
+
+## [v1.0.0](https://www.kronops.com.mx) (2020-12-30)
+
+**Features*
+
+* Add ansible playbooks for apt & source repositories.
+* Add ansible playbooks for shell settings.
+* Add ansible playbooks for KDE packages for audio & video.
+* Add ansible plabybooks for common desktop users with cli and X11 tools.
+* Add ansible playboooks for web browsing with firefox & chrome, emailing with thunderbird.
+* Add ansible playbook for productivity tools like freeplane.
+* Add ansible playbooks for teamviewer, insync, zoom and slack.
+* Add ansible playbooks for developer tools like atok, virtualbox, vagrant, packer, gcloud, aws cli, terraform & docker.
