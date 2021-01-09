@@ -14,5 +14,5 @@
     - desktop-vagrant
     - packer-service
     - terraform-service
-    #- docker-toolkit
+    - docker-toolkit
     #- awscli-service
