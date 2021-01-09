@@ -21,3 +21,8 @@
   apt: pkg=google-cloud-sdk state=present
   tags:
     - gcloud_tools
+
+- name: Install kubectl package
+  apt: pkg=kubectl state=present
+  tags:
+    - gcloud_tools
