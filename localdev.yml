@@ -15,4 +15,5 @@
     - packer-service
     - terraform-service
     - docker-toolkit
+    - helm-service
     #- awscli-service

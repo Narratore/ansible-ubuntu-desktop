@@ -1,0 +1,23 @@
+---
+# tasks file for desktop-anydesk
+
+- name: Configure the Anydesk APT key
+  apt_key: url=https://keys.anydesk.com/repos/DEB-GPG-KEY state=present
+  tags:
+    - desktop_anydesk
+
+- name: Configure the Anydesk APT repositories
+  apt_repository: repo="deb http://deb.anydesk.com/ all main" state=present
+  tags:
+    - desktop_anydesk
+
+- name: Update apt cache
+  apt: update_cache=yes
+  tags:
+    - desktop_anydesk
+
+- name: Install Anydesk
+  apt: pkg=anydesk state=present
+  tags:
+    - desktop_anydesk
+

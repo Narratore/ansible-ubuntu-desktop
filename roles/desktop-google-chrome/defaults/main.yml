@@ -2,5 +2,4 @@
 # defaults file for desktop-google-chrome
 
 chrome_apt_file: /etc/apt/sources.list.d/google-chrome.list
-talkplugin_apt_file: /etc/apt/sources.list.d/google-talkplugin.list
 

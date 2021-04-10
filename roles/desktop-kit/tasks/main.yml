@@ -19,6 +19,7 @@
       - ipcalc
       - wakeonlan
       - curl
+      - wget
       - jq
       - powertop
     state: latest
@@ -50,7 +51,7 @@
       - keychain
       - ssh-askpass
       - pwgen
-      - keepassx
+      - keepassxc
       - kgpg
     state: latest
   tags:

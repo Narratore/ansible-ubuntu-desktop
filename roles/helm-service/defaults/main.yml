@@ -1,0 +1,5 @@
+---
+# defaults file for helm-service
+
+helm2_url: "https://baltocdn.com/helm/stable/debian/pool/main/h/helm2/helm2_2.16.12-1_amd64.deb"
+

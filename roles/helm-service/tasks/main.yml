@@ -1,0 +1,27 @@
+---
+# tasks file for helm-service
+
+- name: Install HTTPS support for apt
+  apt: pkg=apt-transport-https state=present
+  tags:
+    - helm_service
+
+- name: Configure the helm APT key
+  apt_key: url=https://baltocdn.com/helm/signing.asc state=present
+  tags:
+    - helm_service
+
+- name: Configure the helm APT repositories
+  apt_repository: repo="deb https://baltocdn.com/helm/stable/debian/ all main" state=present
+  tags:
+    - helm_service
+
+- name: Update apt cache
+  apt: update_cache=yes
+  tags:
+    - helm_service
+
+- name: Install helm2
+  apt: pkg=helm2 state=present
+  tags:
+    - helm_service

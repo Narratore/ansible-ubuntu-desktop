@@ -14,10 +14,10 @@
     - local-storage
     - desktop-kit
     - desktop-fingerprint
-    - desktop-oh-my-zsh
     - desktop-teamviewer
+    - desktop-anydesk
     - desktop-google-chrome
     - desktop-insync
-    #- desktop-zoom
+    - desktop-zoom
     #- desktop-slack
  
