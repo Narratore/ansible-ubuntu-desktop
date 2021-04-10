@@ -56,7 +56,13 @@ personally I run this tasks every time after installing the operating system:
 
 ## Cloning the repository
 
-First we need to go the directory we are going to work, and clone the repository
+First of all we are going to install some basic cli tools:
+
+```
+$ sudo apt install vim git
+```
+
+Now we need to go the directory we are going to work, and clone the repository
 from gitlab, for example:
 
 ```
@@ -111,9 +117,10 @@ $ cat localsystem.yml
     - desktop-fingerprint
     - desktop-oh-my-zsh
     - desktop-teamviewer
+    - desktop-anydesk
     - desktop-google-chrome
     - desktop-insync
-    #- desktop-zoom
+    - desktop-zoom
     #- desktop-slack
 
 ```
@@ -144,7 +151,8 @@ $ ansible-playbook localsystem.yml -K
 BECOME password:
 ```
 
-**NOTE:** Here we use **-K** parameter so ansible asks for user password to run tasks with privileges.
+**NOTE:** Here we use **-K** parameter so ansible asks for user password to run
+tasks with privileges.
 
 If you want to install those development and cloud management tools on your system,
 you can run the **localdev.yml** playbook.
@@ -178,11 +186,11 @@ can include more than one tag, here are the main tags:
  * **desktop-kit:** desktop_kit_libvirt_desk
  * **desktop-kit:** desktop_kit_sshvpn
  * **desktop-fingerprint:** desktop_fingerprint
+ * **desktop-teamviewer:** desktop_teamviewer
+ * **desktop-anydesk:** desktop_anydesk
  * **desktop-google-chrome:** desktop_insync
  * **desktop-insync:** desktop_insync
- * **desktop-virtualbox:** desktop_virtualbox
- * **desktop-vagrant:** desktop_vagrant
- * **desktop-teamviewer:** desktop_teamviewer
+ * **desktop-zoom:** desktop_zoom
 
 **IMPORTANT:** Be careful when you run tasks from the desktop-kit role, there are some
 heavy apps you may not need.
@@ -193,7 +201,8 @@ Now run ansible with a few simple tasks for system settings:
 $ ansible-playbook localsystem.yml -K --tags=system_settings,system_settings_timezone
 ```
 
-**NOTE:** Here we use **-K** parameter so ansible asks for user password to run tasks with privileges.
+**NOTE:** Here we use **-K** parameter so ansible asks for user password to run
+tasks with privileges.
 
 Let's run the tasks for the package management, shell settings and tools:
 
@@ -213,17 +222,14 @@ I use different tools for my local storage:
 $ ansible-playbook localsystem.yml -K --tags=desktop_local_storage
 ```
 
-Let's run some tasks for local development:
-
-```
-$ ansible-playbook localdev.yml -K --tags=desktop_virtualbox,desktop_vagrant
-```
-
 ## Creating new roles
 
-If you want to group lots of tasks with a different purpose, I recommend you to create a dedicated playbook inside a role, you can create a role using the command ansible-galaxy, for example:
+If you want to group lots of tasks with a different purpose, I recommend you to
+create a dedicated playbook inside a role, you can create a role using the command
+ansible-galaxy, for example:
 
-First, go inside your main directory on your proyect, we expect a roles directory on the root.
+First, go inside your main directory on your proyect, we expect a roles
+directory on the root.
 
 ```
 $ cd roles
@@ -253,13 +259,18 @@ desktop-insync/
 
 ```
 
-Ansible galaxy will create the role files and directories structure, most of the work is on the tasks directory, inside the main.yml file.
+**IMPORTANT:** You should use hypen `-` for role names composed of more than
+2 words. We use `desktop-` for any desktop application.
+
+Ansible galaxy will create the role files and directories structure, most of
+the work is on the tasks directory, inside the main.yml file.
 
 ```
 $ vim roles/desktop-insync/tasks/main.yml
 ```
 
-Before you can run the tasks on this new role, you have to incluide it on the main playbook, that is localsystem.yml, for example:
+Before you can run the tasks on this new role, you have to incluide it on the
+main playbook, that is localsystem.yml, for example:
 
 ```
 $ vim localsystem.yml
@@ -277,43 +288,34 @@ $ vim localsystem.yml
     - local-storage
     - desktop-kit
     - desktop-fingerprint
-    - desktop-virtualbox
-    - desktop-vagrant
+    - desktop-oh-my-zsh
+    - desktop-teamviewer
+    - desktop-google-chrome
     - desktop-insync
-#    - desktop-teamviewer
-#    - desktop-google-chrome
+    - desktop-zoom
 ```
-That is, if you want to clone this repository go ahead, please give feed back if you want to help to improve this.
 
-## Mejores prácticas
+That is, if you want to clone this repository go ahead, please give feed back if
+you want to help to improve this.
 
-Para el caso de una PC con Ansible, solo es necesario un playbook principal que puede ser localsystem.yml el cual incluye uno o varios roles con diferentes tareas.
+## Best practices
 
-Para construir la estructura del rol se debe usar ansible-galaxy, el nombre debe ser rol-service.
+Follow this recommendations to write better playbooks:
 
-IMPORTANTE: Los roles deben usar guión medio para separar las palabras que componen el nombre del  rol, se aconseja que los nombres de los roles terminen con "-service".
-
-Se deben seguir las mejores prácticas de edición en relación a :
-
- * Escribir nombres de tareas descriptivas y en inglés.
- * Identado basado en espacios en blanco.
- * Lineas en blanco para separar cada tarea
- * Uso de variables en formato ansible 2.x, ejemplo ansible_ssh_host en lugar de ansible_host.
- * Uso de variables especificas para el componente en vars/main.yml.
- * Uso de variables especificas para el ambiente en defaults/main.yml.
- * Uso de variables especificas para el centro en inventory/marca/production.
- * Uso de variables estandar en base a el inventario o facts para evitar re escribir funciones de shell para capturar datos.
- * Se deben usar las funciones de python como split para sacar variables personalizadas siempre en base a variables exitentes en inventario, rol o fact.
- * Se deben usar tags para cada tarea, si son generales que se use la etiqueta general rol_service, note el guion bajo, no se usan guión medio "-".
-
-Una vez desarrollado el playbook del rol, se debe agregar el rol al playbook de cada tipo de servidor abajo del rol de snmp-service.
-
-Se deben documentar los tags en el documento de la matriz del sistema de gestión de configuraciones que se adjunta.
-
-Los cambios deben integrarse al repositorio git ansible en la rama development y realizar un merge request para que se valide.
+ * Use descriptive task names in english.
+ * Ident using 2 space.
+ * Use new lines to separate each task
+ * Use variables written based on format ansible 2.x.
+ * Use role specific variables in `vars/main.yml`.
+ * Use environment specific variables in `defaults/main.yml`.
+ * Use host or group host specific variables in `hosts`.
+ * Use standard variables from the inventory or facts so you dont have to write
+   shell functions to capture data from hosts
+ * Use python functions to get custom data.
+ * Use tags for every group of tasks, use `_` for tag names.
 
 ## Contributing
 
-Si desea contribuir al código se recomienda clonar el repositorio y trabajar en un feature branch o en development y hacer pull request para integrar a la rama master del ambiente de production.
+If you want to contribute code to this repository, clone, create a feature branch,
+work on your local copy and then send a Merge Request, we will make a code review.
 
-La rama master está protegida para que solo usuarios con rol de owner o master puedan hacer commits, la forma más segura de integrar cambios es hacer pull request y peer review del código, para validarlo y probarlo en el ambiente de pruebas antes de poder integrar el código al ambiente productivo.
