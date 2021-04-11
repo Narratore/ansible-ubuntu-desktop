@@ -1,5 +1,17 @@
 # Change Log
 
+## [v1.3.0](https://www.kronops.com.mx) (2021-04-11)
+
+**Features*
+
+* Update playbooks for kubuntu 20.04 (focal).
+* Add ansible playbooks for anydesk.
+
+**Fixes*
+
+* Update playbook metadata for kubuntu 20.04 (focal).
+* Update readme with more instructions, best practices and how to contribute.
+
 ## [v1.2.0](https://www.kronops.com.mx) (2020-12-30)
 
 **Features*
@@ -11,4 +23,6 @@
 * Add ansible playboooks for web browsing with firefox & chrome, emailing with thunderbird.
 * Add ansible playbook for productivity tools like freeplane.
 * Add ansible playbooks for teamviewer, insync, zoom and slack.
-* Add ansible playbooks for developer tools like atok, virtualbox, vagrant, packer, gcloud, aws cli, terraform & docker.
+* Add ansible playbooks for developer tools like atok, virtualbox, vagrant, packer, gcloud,
+  aws cli, terraform & docker.
+

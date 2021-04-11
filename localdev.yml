@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   connection: local
-  user: jmedina
+  user: ubuntu
   become: yes
   pre_tasks:
   - name: Pretask | Update apt cache

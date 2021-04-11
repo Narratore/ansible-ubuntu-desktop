@@ -7,7 +7,7 @@ at home and work.
 
 I don't like to do repetitive work, I prefer to automate it, one task that I'd like
 to automate is the setup process after installing the base operating system on my
-laptops, I call this, the post-setup process, the requisite to automate something
+laptops, I call this, the linux post-setup process, the requisite to automate something
 is document it, so I wrote a guide which helps me to do this process manually,
 with a script, or with a configuration management tool like Ansible.
 
@@ -17,13 +17,15 @@ are included in the official repositories of Ubuntu, in this case for Ubuntu 20.
 (focal), I also requiere other programs wich are not open source, at least they are
 freely available.
 
+I will describe how to use this playbooks to simplify the process on your own machines.
+
 ### Objetives
 
 The main objetive is to automatically execute the tasks in the post-setup process,
-personally I run this tasks every time after installing the operating system:
+I run these tasks every time after installing the operating system:
 
  * Customize bash shell enviroment
- * Install official packages by group
+ * Configure apt and install official packages by group
    * Configuring apt repositories
    * Configuring apt PPA repositories
    * Configure http proxy for apt tools
@@ -37,22 +39,23 @@ personally I run this tasks every time after installing the operating system:
    * Install personal productivity tools
    * Install KVM and libvirt virtualization tools
    * Install Fingerprint reader
-   * Install Oh my Zsh
  * Install extra communications, remote management, web and cloud sync
-   * Install Teamviewer
+   * Install Teamviewer and AnyDesk
    * Install Google Chrome
    * Install Insync
-   * Install Zoom (disabled by default)
+   * Install Zoom
    * Install Slack (disabled by default)
  * Install extra developer and cloud admin tools
-   * Install Atom (optional localdev.yml)
-   * Install Google Cloud SDK (optional localdev.yml)
-   * Install VirtualBox (optional localdev.yml)
-   * Install Vagrant (option localdev.yml)
-   * Install Packer (option localdev.yml)
-   * Install Terraform (option localdev.yml)
-   * Install AWS CLI (option localdev.yml)
-   * Install Docker (option localdev.yml)
+   * Install zsh & oh-my-zsh
+   * Install Atom
+   * Install Google Cloud SDK
+   * Install VirtualBox
+   * Install Vagrant
+   * Install Packer
+   * Install Terraform
+   * Install Docker
+   * Install Helm
+   * Install AWS CLI
 
 ## Cloning the repository
 
@@ -125,6 +128,15 @@ $ cat localsystem.yml
 
 ```
 
+The fist part defines where these task are going to run, the type of connection,
+the username and how to scalate privileges to run administrative tools.
+
+The playbook also updates the apt cache before running any other aplication, this
+is required in order to be sure that apt cache is updated and if you run this
+playbook a second time will update the curren package.
+
+We define a list of roles, which are group of tasks related to a funcion.
+
 ## Running the Ansible playbook
 
 Before you run ansible, plase edit localsystem.yml playbook file, change the
@@ -154,8 +166,13 @@ BECOME password:
 **NOTE:** Here we use **-K** parameter so ansible asks for user password to run
 tasks with privileges.
 
-If you want to install those development and cloud management tools on your system,
+If you want to install the development and cloud management tools on your system,
 you can run the **localdev.yml** playbook.
+
+```
+$ ansible-playbook localdev.yml -K
+BECOME password:
+```
 
 ## Running only a group of tasks using tags
 
@@ -220,6 +237,13 @@ I use different tools for my local storage:
 
 ```
 $ ansible-playbook localsystem.yml -K --tags=desktop_local_storage
+```
+
+If you only want to install a group of dev & cloud tools use tags like this:
+
+```
+$ ansible-playbook localdev.yml -K --tags=docker_toolkit,gcloud_tools,terraform_service
+BECOME password:
 ```
 
 ## Creating new roles
@@ -288,11 +312,12 @@ $ vim localsystem.yml
     - local-storage
     - desktop-kit
     - desktop-fingerprint
-    - desktop-oh-my-zsh
     - desktop-teamviewer
+    - desktop-anydesk
     - desktop-google-chrome
     - desktop-insync
     - desktop-zoom
+    #- desktop-slack
 ```
 
 That is, if you want to clone this repository go ahead, please give feed back if
