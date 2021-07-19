@@ -1,0 +1,5 @@
+---
+# defaults file for kitty-level99k
+
+the_user: "{{ ansible_user_id }}"
+
