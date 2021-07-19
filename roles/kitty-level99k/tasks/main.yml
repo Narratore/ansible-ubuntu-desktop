@@ -1,0 +1,32 @@
+---
+# tasks file for kitty-level99k
+
+- name: Install terminal emulator, shell and fonts
+  apt:
+    name:
+      - kitty
+      - fonts-powerline
+      - zsh
+    state: latest
+
+- name: set up zsh for user
+  become: yes
+  user:
+    name: "{{ the_user }}"
+    shell: /bin/zsh
+ 
+- name: Download oh-my-shell install script
+  get_url:
+    url: https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+    dest: /tmp/omzinstall.sh
+
+- name: Run a script with arguments (free form)
+  command: sh /tmp/omzinstall.sh
+#- name: Deploy oh-my-zsh
+#  git:
+#    repo: "{{ oh_my_zsh_repo }}"
+#    dest: "{{ oh_my_zsh_dir }}"
+#    force: yes
+#  become_user: "{{ item }}"
+#  with_items: "{{ oh_my_zsh_users }}"
+#
