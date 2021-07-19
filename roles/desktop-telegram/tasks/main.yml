@@ -1,0 +1,6 @@
+---
+# tasks file for desktop-telegram
+- name: Install Telegram snap package
+  snap:
+    name: telegram-desktop
+
