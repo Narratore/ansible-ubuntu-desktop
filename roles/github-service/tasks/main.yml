@@ -1,0 +1,23 @@
+---
+# tasks file for github-service
+ name: Configure Brave APT key
+  get_url:
+    url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+    dest: /usr/share/keyrings/githubcli-archive-keyring.gpg
+  tags:
+    - github_service
+
+- name: Add GitHub CLI repository
+  apt_repository:
+    repo: deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main
+    filename: github-cli.list
+    state: present
+  tags:
+    - github_service
+ 
+- name: Install GitHub CLI
+  apt:
+    name: gh
+  tags:
+    - github_service
+
