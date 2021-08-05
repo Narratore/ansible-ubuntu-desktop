@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   connection: local
-  user: jmedina
+  user: zero
   become: yes
   pre_tasks:
   - name: Pretask | Update apt cache
@@ -19,5 +19,8 @@
     - desktop-google-chrome
     - desktop-insync
     - desktop-zoom
-    #- desktop-slack
- 
+    - desktop-slack
+    - desktop-brave-browser 
+    - desktop-telegram
+    - github-service
+
