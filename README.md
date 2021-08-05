@@ -1,5 +1,8 @@
 # Ansible for my personal Kubuntu Desktop
 
+This repository is a fork from Jorge Medina's project, you can see the original project
+at [https://gitlab.com/jorge.medina/ansible-my-kubuntu-desktopi](https://gitlab.com/jorge.medina/ansible-my-kubuntu-desktop).
+
 ## Introduction
 
 I love GNU/Linux and I use it as the base operating system on my personal computers
@@ -42,9 +45,11 @@ I run these tasks every time after installing the operating system:
  * Install extra communications, remote management, web and cloud sync
    * Install Teamviewer and AnyDesk
    * Install Google Chrome
+   * Install Brave Browser
    * Install Insync
    * Install Zoom
    * Install Slack (disabled by default)
+   * Install Telegram Desktop
  * Install extra developer and cloud admin tools
    * Install zsh & oh-my-zsh
    * Install Atom
@@ -56,6 +61,7 @@ I run these tasks every time after installing the operating system:
    * Install Docker
    * Install Helm
    * Install AWS CLI
+   * Install GitHub CLI
 
 ## Cloning the repository
 
@@ -71,8 +77,8 @@ from gitlab, for example:
 ```
 $ mkdir ~/data/vcs
 $ cd ~/data/vcs
-$ git clone https://gitlab.com/jorge.medina/ansible-my-kubuntu-desktop
-$ cd ansible-my-kubuntu-desktop
+$ git clone https://github.com/Narratore/ansible-ubuntu-desktop.git
+$ cd ansible-ubuntu-desktop
 ```
 
 ## Installing and Testing Ansible
